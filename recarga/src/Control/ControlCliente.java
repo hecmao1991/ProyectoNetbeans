@@ -17,10 +17,11 @@ import org.omg.CORBA.OBJECT_NOT_EXIST;
 public class ControlCliente {
     
     Persistencia p = new Persistencia();
-    // es primero pull 
+    // es primero pull este es para bajar cambios o acatualizar con la origin master solo el repositori local
     //desopues commit tenes que dar un comentario de los cambios y push
     //para subir cambios
     // y a ajajajaaj calenturas jajajajaa
+    //el merge rveision es este es con las ramas pero igual sincorniza o fusiona los cambios con la origin/master
      
     public boolean insertarCliente(String cedula, String direccion) {
         boolean inserto = false;
