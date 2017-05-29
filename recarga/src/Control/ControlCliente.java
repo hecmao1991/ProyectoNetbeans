@@ -17,7 +17,11 @@ import org.omg.CORBA.OBJECT_NOT_EXIST;
 public class ControlCliente {
     
     Persistencia p = new Persistencia();
-
+    // es primero pull 
+    //desopues commit tenes que dar un comentario de los cambios y push
+    //para subir cambios
+    // y a ajajajaaj calenturas jajajajaa
+     
     public boolean insertarCliente(String cedula, String direccion) {
         boolean inserto = false;
         String sql = "insert into cliente(cedula,direccion)" + "values (" + cedula + ",'" + direccion + "')";
