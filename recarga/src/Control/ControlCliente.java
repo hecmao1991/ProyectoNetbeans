@@ -22,7 +22,7 @@ public class ControlCliente {
     //para subir cambios
     // y a ajajajaaj calenturas jajajajaa
     //el merge rveision es este es con las ramas pero igual sincorniza o fusiona los cambios con la origin/master
-     
+     //listo
     public boolean insertarCliente(String cedula, String direccion) {
         boolean inserto = false;
         String sql = "insert into cliente(cedula,direccion)" + "values (" + cedula + ",'" + direccion + "')";
