@@ -16,6 +16,8 @@ import org.omg.CORBA.OBJECT_NOT_EXIST;
 
 public class ControlCliente {
     //prueba ingreso
+    //joaqui putito
+    
     Persistencia p = new Persistencia();
 
     public boolean insertarCliente(String cedula, String direccion) {
