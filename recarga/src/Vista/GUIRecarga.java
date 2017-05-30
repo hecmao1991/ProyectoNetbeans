@@ -117,6 +117,11 @@ public class GUIRecarga extends javax.swing.JFrame {
         btnmostrarClientes = new javax.swing.JButton();
         jPaneltblCliente = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
+        jPanelBusquedaclie = new javax.swing.JPanel();
+        txtBusquedaCliente = new javax.swing.JTextField();
+        btnBusquedaCliente = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jCBoxBusquedaCliente = new javax.swing.JComboBox<>();
         jPanelVentas = new javax.swing.JPanel();
         jPanelBotonesVnt = new javax.swing.JPanel();
         btnGuardarVenta = new javax.swing.JButton();
@@ -139,10 +144,10 @@ public class GUIRecarga extends javax.swing.JFrame {
         jPaneltblVenta = new javax.swing.JScrollPane();
         tblVenta = new javax.swing.JTable();
         jPanelBusquedaVnt = new javax.swing.JPanel();
-        txtBus = new javax.swing.JTextField();
-        btnBus = new javax.swing.JButton();
+        txtBusquedadVenta = new javax.swing.JTextField();
+        btnBusquedadVenta = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jCBoxBusqueda = new javax.swing.JComboBox<>();
+        jCBoxBusquedaVenta = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -294,6 +299,55 @@ public class GUIRecarga extends javax.swing.JFrame {
         });
         jPaneltblCliente.setViewportView(tblCliente);
 
+        jPanelBusquedaclie.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Busqueda"));
+
+        txtBusquedaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBusquedaClienteActionPerformed(evt);
+            }
+        });
+
+        btnBusquedaCliente.setText("Buscar");
+        btnBusquedaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBusquedaClienteActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setText("Buscar por:");
+
+        jCBoxBusquedaCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre_Cliente", "Cedula_Cliente", "Mostrar_Clientes" }));
+
+        javax.swing.GroupLayout jPanelBusquedaclieLayout = new javax.swing.GroupLayout(jPanelBusquedaclie);
+        jPanelBusquedaclie.setLayout(jPanelBusquedaclieLayout);
+        jPanelBusquedaclieLayout.setHorizontalGroup(
+            jPanelBusquedaclieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBusquedaclieLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelBusquedaclieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelBusquedaclieLayout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBoxBusquedaCliente, 0, 181, Short.MAX_VALUE))
+                    .addComponent(txtBusquedaCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBusquedaclieLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnBusquedaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanelBusquedaclieLayout.setVerticalGroup(
+            jPanelBusquedaclieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBusquedaclieLayout.createSequentialGroup()
+                .addGroup(jPanelBusquedaclieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jCBoxBusquedaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtBusquedaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBusquedaCliente)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanelClientesLayout = new javax.swing.GroupLayout(jPanelClientes);
         jPanelClientes.setLayout(jPanelClientesLayout);
         jPanelClientesLayout.setHorizontalGroup(
@@ -302,7 +356,9 @@ public class GUIRecarga extends javax.swing.JFrame {
                 .addComponent(jPanelDatoscli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelbotonescli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanelBusquedaclie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(39, 39, 39))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelClientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPaneltblCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
@@ -313,10 +369,11 @@ public class GUIRecarga extends javax.swing.JFrame {
             .addGroup(jPanelClientesLayout.createSequentialGroup()
                 .addGroup(jPanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelDatoscli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelbotonescli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jPanelbotonescli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelBusquedaclie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPaneltblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 159, Short.MAX_VALUE))
+                .addGap(0, 164, Short.MAX_VALUE))
         );
 
         PanelClientes.addTab("CLIENTES ", jPanelClientes);
@@ -469,22 +526,22 @@ public class GUIRecarga extends javax.swing.JFrame {
 
         jPanelBusquedaVnt.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Busqueda"));
 
-        txtBus.addActionListener(new java.awt.event.ActionListener() {
+        txtBusquedadVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBusActionPerformed(evt);
+                txtBusquedadVentaActionPerformed(evt);
             }
         });
 
-        btnBus.setText("Buscar");
-        btnBus.addActionListener(new java.awt.event.ActionListener() {
+        btnBusquedadVenta.setText("Buscar");
+        btnBusquedadVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBusActionPerformed(evt);
+                btnBusquedadVentaActionPerformed(evt);
             }
         });
 
         jLabel7.setText("Buscar por:");
 
-        jCBoxBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre_Cliente", "Cedula_Cliente", "Codigo_Venta", "Mostrar_Clientes", "Mostrar_Plataforma" }));
+        jCBoxBusquedaVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre_Cliente", "Cedula_Cliente", "Codigo_Venta", "Mostrar_Clientes", "Mostrar_Plataforma" }));
 
         javax.swing.GroupLayout jPanelBusquedaVntLayout = new javax.swing.GroupLayout(jPanelBusquedaVnt);
         jPanelBusquedaVnt.setLayout(jPanelBusquedaVntLayout);
@@ -496,11 +553,11 @@ public class GUIRecarga extends javax.swing.JFrame {
                     .addGroup(jPanelBusquedaVntLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCBoxBusqueda, 0, 181, Short.MAX_VALUE))
-                    .addComponent(txtBus, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jCBoxBusquedaVenta, 0, 181, Short.MAX_VALUE))
+                    .addComponent(txtBusquedadVenta, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBusquedaVntLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnBus, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnBusquedadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanelBusquedaVntLayout.setVerticalGroup(
@@ -508,11 +565,11 @@ public class GUIRecarga extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBusquedaVntLayout.createSequentialGroup()
                 .addGroup(jPanelBusquedaVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jCBoxBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCBoxBusquedaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtBusquedadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBus)
+                .addComponent(btnBusquedadVenta)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -602,36 +659,36 @@ public class GUIRecarga extends javax.swing.JFrame {
         this.refrescarTblVenta();
     }//GEN-LAST:event_btnmostrarVentasActionPerformed
 
-    private void txtBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusActionPerformed
+    private void txtBusquedadVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedadVentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBusActionPerformed
+    }//GEN-LAST:event_txtBusquedadVentaActionPerformed
 
-    private void btnBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusActionPerformed
-       String Busqueda= txtBus.getText();
+    private void btnBusquedadVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusquedadVentaActionPerformed
+       String Busqueda= txtBusquedadVenta.getText();
        Object dato[][]=cc.consultarClienteNombre(Busqueda);
-       if ("Nombre_Cliente".equals(jCBoxBusqueda.getSelectedItem().toString())) {                
+       if ("Nombre_Cliente".equals(jCBoxBusquedaVenta.getSelectedItem().toString())) {                
                  Object data[][] = cc.consultarClienteNombre(Busqueda);
                     dtm1= new DefaultTableModel(data,tablaCliente);
                     tblVenta.setModel(dtm1);                                         
-       }else if("Cedula_Cliente".equals(jCBoxBusqueda.getSelectedItem().toString())){                
+       }else if("Cedula_Cliente".equals(jCBoxBusquedaVenta.getSelectedItem().toString())){                
                  Object data[][] = cc.consultarClientesCedula(Busqueda);
                     dtm1= new DefaultTableModel(data,tablaCliente);
                     tblVenta.setModel(dtm1);                    
-       }else if ("Codigo_Venta".equals(jCBoxBusqueda.getSelectedItem().toString())){
+       }else if ("Codigo_Venta".equals(jCBoxBusquedaVenta.getSelectedItem().toString())){
                 Object data[][] = cv.consultarVentaCodigo(Busqueda);
                     dtm1= new DefaultTableModel(data,tablaVenta);
                     tblVenta.setModel(dtm1);
-       }else if ("Mostrar_Clientes".equals(jCBoxBusqueda.getSelectedItem().toString())){
+       }else if ("Mostrar_Clientes".equals(jCBoxBusquedaVenta.getSelectedItem().toString())){
                 Object data[][] = cc.consultarClientes();
                     dtm1= new DefaultTableModel(data,tablaCliente);
                     tblVenta.setModel(dtm1);
-       }else if ("Mostrar_Plataforma".equals(jCBoxBusqueda.getSelectedItem().toString())){
+       }else if ("Mostrar_Plataforma".equals(jCBoxBusquedaVenta.getSelectedItem().toString())){
                 Object data[][] = cp.consultarPlataforma();
                     dtm1= new DefaultTableModel(data,tablaClienteCN);
                     tblVenta.setModel(dtm1);
        }else{JOptionPane.showMessageDialog(this, "Datos no Encontrados!!","Cancelar",JOptionPane.ERROR_MESSAGE);
        }
-    }//GEN-LAST:event_btnBusActionPerformed
+    }//GEN-LAST:event_btnBusquedadVentaActionPerformed
 
     private void btnModificarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarVentaActionPerformed
        CODIGO_VNT= txtcodVen.getText();
@@ -728,6 +785,30 @@ public class GUIRecarga extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tblClienteMouseClicked
 
+    private void txtBusquedaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBusquedaClienteActionPerformed
+
+    private void btnBusquedaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusquedaClienteActionPerformed
+        String Busqueda= txtBusquedaCliente.getText();
+       Object dato[][]=cc.consultarClienteNombre(Busqueda);
+       
+       if ("Nombre_Cliente".equals(jCBoxBusquedaVenta.getSelectedItem().toString())) {                
+                 Object data[][] = cc.consultarClienteNombre(Busqueda);
+                    dtmCliente= new DefaultTableModel(data,tablaCliente);
+                    tblCliente.setModel(dtmCliente);                                         
+       }else if("Cedula_Cliente".equals(jCBoxBusquedaVenta.getSelectedItem().toString())){                
+                 Object data[][] = cc.consultarClientesCedula(Busqueda);
+                    dtmCliente= new DefaultTableModel(data,tablaCliente);
+                    tblCliente.setModel(dtmCliente);                    
+       }else if ("Mostrar_Clientes".equals(jCBoxBusquedaVenta.getSelectedItem().toString())){
+                Object data[][] = cc.consultarClientes();
+                    dtmCliente= new DefaultTableModel(data,tablaCliente);
+                    tblCliente.setModel(dtmCliente);
+       }else{JOptionPane.showMessageDialog(this, "Datos no Encontrados!!","Cancelar",JOptionPane.ERROR_MESSAGE);
+       }
+    }//GEN-LAST:event_btnBusquedaClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -766,7 +847,8 @@ public class GUIRecarga extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane PanelClientes;
-    private javax.swing.JButton btnBus;
+    private javax.swing.JButton btnBusquedaCliente;
+    private javax.swing.JButton btnBusquedadVenta;
     private javax.swing.JButton btnEliminarCliente;
     private javax.swing.JButton btnEliminarVenta;
     private javax.swing.JButton btnGuardarCliente;
@@ -775,13 +857,15 @@ public class GUIRecarga extends javax.swing.JFrame {
     private javax.swing.JButton btnModificarVenta;
     private javax.swing.JButton btnmostrarClientes;
     private javax.swing.JButton btnmostrarVentas;
-    private javax.swing.JComboBox<String> jCBoxBusqueda;
+    private javax.swing.JComboBox<String> jCBoxBusquedaCliente;
+    private javax.swing.JComboBox<String> jCBoxBusquedaVenta;
     private com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -792,6 +876,7 @@ public class GUIRecarga extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelBotonesVnt;
     private javax.swing.JPanel jPanelBusquedaVnt;
+    private javax.swing.JPanel jPanelBusquedaclie;
     private javax.swing.JPanel jPanelClientes;
     private javax.swing.JPanel jPanelDatosVnt;
     private javax.swing.JPanel jPanelDatoscli;
@@ -801,7 +886,8 @@ public class GUIRecarga extends javax.swing.JFrame {
     private javax.swing.JScrollPane jPaneltblVenta;
     private javax.swing.JTable tblCliente;
     private javax.swing.JTable tblVenta;
-    private javax.swing.JTextField txtBus;
+    private javax.swing.JTextField txtBusquedaCliente;
+    private javax.swing.JTextField txtBusquedadVenta;
     private javax.swing.JTextField txtCodCli;
     private javax.swing.JTextField txtCodPlat;
     private javax.swing.JTextField txtapellidos;
