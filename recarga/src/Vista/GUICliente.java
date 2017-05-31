@@ -74,7 +74,6 @@ public class GUICliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PanelClientes = new javax.swing.JTabbedPane();
         jPanelClientes = new javax.swing.JPanel();
         jPanelDatoscli = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -103,6 +102,8 @@ public class GUICliente extends javax.swing.JFrame {
         jCBoxBusquedaCliente = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanelClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Cliente"));
 
         jPanelDatoscli.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Ingresar Datos"));
 
@@ -285,7 +286,7 @@ public class GUICliente extends javax.swing.JFrame {
                     .addGroup(jPanelBusquedaclieLayout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCBoxBusquedaCliente, 0, 181, Short.MAX_VALUE))
+                        .addComponent(jCBoxBusquedaCliente, 0, 156, Short.MAX_VALUE))
                     .addComponent(txtBusquedaCliente, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBusquedaclieLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -318,7 +319,7 @@ public class GUICliente extends javax.swing.JFrame {
                 .addGap(39, 39, 39))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelClientesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPaneltblCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
+                .addComponent(jPaneltblCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelClientesLayout.setVerticalGroup(
@@ -334,12 +335,10 @@ public class GUICliente extends javax.swing.JFrame {
                         .addGap(32, 32, 32))
                     .addGroup(jPanelClientesLayout.createSequentialGroup()
                         .addComponent(jPanelDatoscli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPaneltblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 166, Short.MAX_VALUE))
+                .addGap(0, 85, Short.MAX_VALUE))
         );
-
-        PanelClientes.addTab("CLIENTES ", jPanelClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -347,14 +346,15 @@ public class GUICliente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanelClientes)
-                .addContainerGap())
+                .addComponent(jPanelClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(PanelClientes)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jPanelClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(508, Short.MAX_VALUE))
         );
 
         pack();
@@ -490,7 +490,6 @@ public class GUICliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane PanelClientes;
     private javax.swing.JButton btnBusquedaCliente;
     private javax.swing.JButton btnEliminarCliente;
     private javax.swing.JButton btnGuardarCliente;

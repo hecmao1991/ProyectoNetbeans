@@ -85,7 +85,6 @@ public class GUIVenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PanelClientes = new javax.swing.JTabbedPane();
         jPanelVentas = new javax.swing.JPanel();
         jPanelBotonesVnt = new javax.swing.JPanel();
         btnGuardarVenta = new javax.swing.JButton();
@@ -114,6 +113,8 @@ public class GUIVenta extends javax.swing.JFrame {
         jCBoxBusquedaVenta = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanelVentas.setBorder(javax.swing.BorderFactory.createTitledBorder("Venta"));
 
         jPanelBotonesVnt.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Botones"));
 
@@ -290,7 +291,7 @@ public class GUIVenta extends javax.swing.JFrame {
                     .addGroup(jPanelBusquedaVntLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCBoxBusquedaVenta, 0, 181, Short.MAX_VALUE))
+                        .addComponent(jCBoxBusquedaVenta, 0, 74, Short.MAX_VALUE))
                     .addComponent(txtBusquedadVenta, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBusquedaVntLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -339,10 +340,8 @@ public class GUIVenta extends javax.swing.JFrame {
                             .addComponent(jPanelBusquedaVnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addComponent(jPaneltblVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
-
-        PanelClientes.addTab("VENTAS", jPanelVentas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -350,14 +349,15 @@ public class GUIVenta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanelClientes)
-                .addContainerGap())
+                .addComponent(jPanelVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(PanelClientes)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jPanelVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -502,7 +502,6 @@ public class GUIVenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane PanelClientes;
     private javax.swing.JButton btnBusquedadVenta;
     private javax.swing.JButton btnEliminarVenta;
     private javax.swing.JButton btnGuardarVenta;
