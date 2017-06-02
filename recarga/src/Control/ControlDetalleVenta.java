@@ -5,16 +5,18 @@
  */
 package Control;
 
+import Modelo.Persistencia;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Modelo.Persistencia;
 
-import org.omg.CORBA.OBJECT_NOT_EXIST;
-
-class ControlDetalleVenta {
-
+/**
+ *
+ * @author DARWIN
+ */
+public class ControlDetalleVenta {
+    
     Persistencia p = new Persistencia();
 
 //        String sql = "select CODIGO_VENTA from venta "
@@ -22,13 +24,17 @@ class ControlDetalleVenta {
     public Object[][] consultarDetalleVentaCodigo(String CODIGO_DET_VENTA) {
         Object data[][] = new Object[contarDetalleVenta()][4];
         ResultSet datos = null;
-        String sql = "select CODIGO_DETALLE_VENTA from Detalle_venta "
+        String sql = "select * from Detalle_venta "
                 + "where CODIGO_DETALLE_VENTA=" + "'" + CODIGO_DET_VENTA + "' ";
         datos = p.ejecutarConsulta(sql);
 
         try {
             while (datos.next()) {
                 data[0][0] = datos.getString(1);
+                data[0][1] = datos.getDouble(2);
+                data[0][2] = datos.getDouble(3);
+                data[0][3] = datos.getString(4);
+                
                
 
             }
@@ -201,103 +207,104 @@ class ControlDetalleVenta {
         return data;
     }
 
-//    public static void main(String[] args) {
-//
-//        ControlDetalleVenta cdv = new ControlDetalleVenta();
-//        ControlVenta cv = new ControlVenta();
-//        double saldo = 0;
-//        double abono = 1000;
-//
-//        String codigo_venta = "codv1";
-//        String codigo_det_venta = "cdetv76";
-//
-//        System.out.println(abono);
-//
-//        Object data[][] = new Object[0][0];
-//        Object datac[][] = new Object[0][0];
-//
-//        data = cv.consultarVentaCodigo(codigo_venta);
-//        datac = cdv.consultarDetalleVentaCodigo(codigo_det_venta);
-//        System.out.println("CODIGO_VENTA: " + data[0][0]);
-////        System.out.println("CODIGO_DETALLE_VENTA: " + datac[0][0]);
-//
-//        try {
-//          if( data[0][0].toString().equals(codigo_venta) & datac[0][0].toString().equals(null)){
-//          boolean ejecuto = cdv.insertarDetalleVenta(codigo_det_venta, abono, cdv.saldo(cdv.valor_venta(codigo_venta), abono), codigo_venta);
-////          System.out.println("CODIGO_VENTA: " + data[0][0]);
-//      
-//            }
-//            if (data[0][0].toString().equals(codigo_venta) & datac[0][0].toString().equals(codigo_det_venta)) {
-//                boolean ejecuto2 = cdv.actualizarDetalleVenta(codigo_det_venta, cdv.abonoaux(cdv.valor_abono(codigo_venta), abono),
-//                        cdv.saldoaux(cdv.valor_saldo(codigo_venta), abono), codigo_venta);
-////                    System.out.println("CODIGO: " + data[0][0]);
-//
-//            }
-//
-//        } catch (Exception e) {
-//            System.out.println("NO EXISTE VENTA");
-//            boolean ejecuto = cdv.insertarDetalleVenta(codigo_det_venta, abono, cdv.saldo(cdv.valor_venta(codigo_venta), abono), codigo_venta);
-////          System.out.println("CODIGO_VENTA: " + data[0][0]);
-//        }
-////        boolean ejecuto = cdv.insertarDetalleVenta(codigo_det_venta, abono, cdv.saldo(cdv.valor_venta(codigo_venta), abono), codigo_venta);
-////               System.out.println("CODIGO: " + data[0][0]);
-//
-////        if (cdv.consultar_cod_venta(codigo_venta)==1 || cdv.consultar_cod_det_venta(codigo_venta)==false) {
-////        } 
-////        if(saldo==0){
-////            System.out.println("PAGO COMLETO");
-////        }
-//        //ABONO 1
-////        boolean ejecuto = cdv.insertarDetalleVenta("cdetv1",abono,cdv.saldo(cdv.valor_venta(codigo_venta), abono),"codv1");
-//        //ABONO 2
-////        boolean ejecuto = cdv.insertarDetalleVenta("cdetv1",abono2,cdv.saldo(cdv.valor_venta(codigo_venta), abono2),"codv1");
-////        boolean ejecuto = cc.actualizarCiente("111", "prueba2");
-//        //boolean ejecuto = cdv.eliminarDetalleVenta(codigo_det_venta);
-////
-////        if (ejecuto) {
-////            System.out.println("Ejecutado correctamente");
-////        }
-////        //LISTAR DETALLE VENTA
-////      
-////       
-////        Object data[][] = new Object[cdv.contarDetalleVenta()][4];
-//        data = cdv.consultarDetalleVenta();
-////
-//        System.out.println("LISTAR DETALLE VENTAS");
-//        for (int i = 0; i < cdv.contarDetalleVenta(); i++) {
-//            System.out.println("COD DETALLE VENTA: " + data[i][0].toString()
-//                    + " ABONO: " + data[i][1].toString()
-//                    + " SALDO: " + data[i][2].toString()
-//                    + " COD VENTA: " + data[i][3].toString());
-//        }
-////
-////        
-////        //CONSULTAR PERSONAS POR CEDULA
-////        
-////        data = cc.consultarClientes("111");
-////        System.out.println("CEDULA : " + data[0][0] 
-////                        + "  NOMBRES: " + data[0][1]
-////                        + "   APELLIDOS: " + data[0][2]
-////                        + "   DIRECCION: " + data[0][3]
-////                        + "   TELEFONO: " + data[0][4]
-////                        + "   CORREO: " + data[0][5]);
-////        
-////        //CONSULTAR PERSONAS POR NOMBRE
-////        
-////        String nombre ="P2";
-////        data = cc.consultarClienteNombre(nombre);
-////        
-////        
-////        for (int i = 0; i < cc.contarclientesxNombre(nombre); i++){
-////        System.out.println("CEDULA : " + data[i][0] 
-////                        + "  NOMBRES: " + data[i][1]
-////                        + "   APELLIDOS: " + data[i][2]
-////                        + "   DIRECCION: " + data[i][3]
-////                        + "   TELEFONO: " + data[i][4]
-////                        + "   CORREO: " + data[i][5]);
-////        
-////        }
-//
-//    }
+    public static void main(String[] args) {
 
+        ControlDetalleVenta cdv = new ControlDetalleVenta();
+        ControlVenta cv = new ControlVenta();
+        double saldo = 0;
+        double abono = 1000;
+
+        String codigo_venta = "codv1";
+        String codigo_det_venta = "cdetv76";
+
+        System.out.println(abono);
+
+        Object data[][] = new Object[0][0];
+        Object datac[][] = new Object[0][0];
+
+        data = cv.consultarVentaCodigo(codigo_venta);
+        datac = cdv.consultarDetalleVentaCodigo(codigo_det_venta);
+        System.out.println("CODIGO_VENTA: " + data[0][0]);
+//        System.out.println("CODIGO_DETALLE_VENTA: " + datac[0][0]);
+
+        try {
+          if( data[0][0].toString().equals(codigo_venta) & datac[0][0].toString().equals(null)){
+          boolean ejecuto = cdv.insertarDetalleVenta(codigo_det_venta, abono, cdv.saldo(cdv.valor_venta(codigo_venta), abono), codigo_venta);
+//          System.out.println("CODIGO_VENTA: " + data[0][0]);
+      
+            }
+            if (data[0][0].toString().equals(codigo_venta) & datac[0][0].toString().equals(codigo_det_venta)) {
+                boolean ejecuto2 = cdv.actualizarDetalleVenta(codigo_det_venta, cdv.abonoaux(cdv.valor_abono(codigo_venta), abono),
+                        cdv.saldoaux(cdv.valor_saldo(codigo_venta), abono), codigo_venta);
+//                    System.out.println("CODIGO: " + data[0][0]);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("NO EXISTE VENTA");
+            boolean ejecuto = cdv.insertarDetalleVenta(codigo_det_venta, abono, cdv.saldo(cdv.valor_venta(codigo_venta), abono), codigo_venta);
+//          System.out.println("CODIGO_VENTA: " + data[0][0]);
+        }
+//        boolean ejecuto = cdv.insertarDetalleVenta(codigo_det_venta, abono, cdv.saldo(cdv.valor_venta(codigo_venta), abono), codigo_venta);
+//               System.out.println("CODIGO: " + data[0][0]);
+
+//        if (cdv.consultar_cod_venta(codigo_venta)==1 || cdv.consultar_cod_det_venta(codigo_venta)==false) {
+//        } 
+//        if(saldo==0){
+//            System.out.println("PAGO COMLETO");
+//        }
+        //ABONO 1
+//        boolean ejecuto = cdv.insertarDetalleVenta("cdetv1",abono,cdv.saldo(cdv.valor_venta(codigo_venta), abono),"codv1");
+        //ABONO 2
+//        boolean ejecuto = cdv.insertarDetalleVenta("cdetv1",abono2,cdv.saldo(cdv.valor_venta(codigo_venta), abono2),"codv1");
+//        boolean ejecuto = cc.actualizarCiente("111", "prueba2");
+        //boolean ejecuto = cdv.eliminarDetalleVenta(codigo_det_venta);
+//
+//        if (ejecuto) {
+//            System.out.println("Ejecutado correctamente");
+//        }
+//        //LISTAR DETALLE VENTA
+//      
+//       
+//        Object data[][] = new Object[cdv.contarDetalleVenta()][4];
+        data = cdv.consultarDetalleVenta();
+//
+        System.out.println("LISTAR DETALLE VENTAS");
+        for (int i = 0; i < cdv.contarDetalleVenta(); i++) {
+            System.out.println("COD DETALLE VENTA: " + data[i][0].toString()
+                    + " ABONO: " + data[i][1].toString()
+                    + " SALDO: " + data[i][2].toString()
+                    + " COD VENTA: " + data[i][3].toString());
+        }
+//
+//        
+//        //CONSULTAR PERSONAS POR CEDULA
+//        
+//        data = cc.consultarClientes("111");
+//        System.out.println("CEDULA : " + data[0][0] 
+//                        + "  NOMBRES: " + data[0][1]
+//                        + "   APELLIDOS: " + data[0][2]
+//                        + "   DIRECCION: " + data[0][3]
+//                        + "   TELEFONO: " + data[0][4]
+//                        + "   CORREO: " + data[0][5]);
+//        
+//        //CONSULTAR PERSONAS POR NOMBRE
+//        
+//        String nombre ="P2";
+//        data = cc.consultarClienteNombre(nombre);
+//        
+//        
+//        for (int i = 0; i < cc.contarclientesxNombre(nombre); i++){
+//        System.out.println("CEDULA : " + data[i][0] 
+//                        + "  NOMBRES: " + data[i][1]
+//                        + "   APELLIDOS: " + data[i][2]
+//                        + "   DIRECCION: " + data[i][3]
+//                        + "   TELEFONO: " + data[i][4]
+//                        + "   CORREO: " + data[i][5]);
+//        
+//        }
+
+    }
+
+    
 }

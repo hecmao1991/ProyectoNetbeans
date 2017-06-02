@@ -8,7 +8,7 @@ import java.sql.*;
 public class ConexionBD {
     static String bd= "recarga";
     static String login ="root";
-    static String pasword ="mysql";
+    static String pasword ="root";
     static String url ="jdbc:mysql://localhost/"+bd;     
     
     Connection con = null;
