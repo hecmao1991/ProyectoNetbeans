@@ -343,8 +343,7 @@ public class GUILogin extends javax.swing.JFrame {
             String pass=txtContraseña.getText();            
             Object dato[][] = CVEN.consultarVendedorUsuario(usu);
             Object dato2[][] = CVEN.consultarVendedorCorreo(usu);
-            
-          //  Object dato2[][] =CP.consultarPersona();
+           
             System.out.println("usuario= "+dato2[0][0]+"pass= "+dato[0][1]);
             
             
