@@ -49,6 +49,9 @@
           </Border>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -64,6 +67,11 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanelBusquedaVnt" max="32767" attributes="0"/>
                       </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="txtBienvenido" min="-2" pref="376" max="-2" attributes="0"/>
+                          <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -72,20 +80,20 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <Component id="txtBienvenido" min="-2" pref="23" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanelDatosVnt" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jPanelBotonesVnt" max="32767" attributes="0"/>
                               <Component id="jPanelBusquedaVnt" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                          <Component id="jPaneltblVenta" min="-2" pref="215" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jPanelDatosVnt" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jPaneltblVenta" min="-2" pref="215" max="-2" attributes="0"/>
-                  <EmptySpace pref="115" max="32767" attributes="0"/>
+                  <EmptySpace pref="101" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -198,10 +206,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtvalor" alignment="1" pref="157" max="32767" attributes="0"/>
                           <Component id="txtCodCli" alignment="1" max="32767" attributes="0"/>
-                          <Component id="txtcodVendedor" max="32767" attributes="0"/>
                           <Component id="txtcodVen" alignment="1" max="32767" attributes="0"/>
                           <Component id="txtCodPlat" alignment="1" max="32767" attributes="0"/>
                           <Component id="jDate" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtcodVendedor" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -230,14 +238,14 @@
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtcodVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtcodVendedor" min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtCodCli" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCodCli" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -293,11 +301,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtCodCli">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtcodVendedor">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtcodVendedorActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JTextField" name="txtCodPlat">
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jDate">
@@ -306,6 +309,18 @@
                   <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,0,0,1,-72,-36,16,-66,24,120"/>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="txtcodVendedor">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -412,6 +427,11 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="txtBienvenido">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

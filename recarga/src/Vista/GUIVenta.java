@@ -43,8 +43,7 @@ public class GUIVenta extends javax.swing.JFrame {
     double VALOR=0;
     String CODIGO_VENDEDOR="";
     String CODIGO_CLI="";
-    String CODIGO_PLA="";  
-    
+    String CODIGO_PLA="";      
     String CEDULA="";
     String NOMBRES="";
     String APELLIDOS="";
@@ -101,9 +100,9 @@ public class GUIVenta extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtvalor = new javax.swing.JTextField();
         txtCodCli = new javax.swing.JTextField();
-        txtcodVendedor = new javax.swing.JTextField();
         txtCodPlat = new javax.swing.JTextField();
         jDate = new com.toedter.calendar.JDateChooser();
+        txtcodVendedor = new javax.swing.JLabel();
         jPaneltblVenta = new javax.swing.JScrollPane();
         tblVenta = new javax.swing.JTable();
         jPanelBusquedaVnt = new javax.swing.JPanel();
@@ -111,6 +110,7 @@ public class GUIVenta extends javax.swing.JFrame {
         btnBusquedadVenta = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jCBoxBusquedaVenta = new javax.swing.JComboBox<>();
+        txtBienvenido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,13 +186,9 @@ public class GUIVenta extends javax.swing.JFrame {
 
         jLabel2.setText("Fecha:");
 
-        txtcodVendedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcodVendedorActionPerformed(evt);
-            }
-        });
-
         jDate.setMaxSelectableDate(new java.util.Date(1893477695000L));
+
+        txtcodVendedor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanelDatosVntLayout = new javax.swing.GroupLayout(jPanelDatosVnt);
         jPanelDatosVnt.setLayout(jPanelDatosVntLayout);
@@ -210,10 +206,10 @@ public class GUIVenta extends javax.swing.JFrame {
                 .addGroup(jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtvalor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                     .addComponent(txtCodCli, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtcodVendedor)
                     .addComponent(txtcodVen, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtCodPlat, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtcodVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelDatosVntLayout.createSequentialGroup()
@@ -235,13 +231,13 @@ public class GUIVenta extends javax.swing.JFrame {
                     .addComponent(txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtcodVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGroup(jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(txtcodVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                .addGroup(jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(txtCodCli, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -324,23 +320,27 @@ public class GUIVenta extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelBotonesVnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelBusquedaVnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanelBusquedaVnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelVentasLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)))
                 .addContainerGap())
         );
         jPanelVentasLayout.setVerticalGroup(
             jPanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVentasLayout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(txtBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDatosVnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelVentasLayout.createSequentialGroup()
-                        .addGap(13, 13, 13)
                         .addGroup(jPanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanelBotonesVnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelBusquedaVnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(18, 18, 18)
-                .addComponent(jPaneltblVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                            .addComponent(jPanelBusquedaVnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(89, 89, 89)
+                        .addComponent(jPaneltblVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelDatosVnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -362,10 +362,6 @@ public class GUIVenta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtcodVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodVendedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcodVendedorActionPerformed
 
     private void btnGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVentaActionPerformed
        CODIGO_VNT= txtcodVen.getText();
@@ -423,7 +419,7 @@ public class GUIVenta extends javax.swing.JFrame {
                 Object data[][] = cp.consultarPlataforma();
                     dtm1= new DefaultTableModel(data,tablaClienteCN);
                     tblVenta.setModel(dtm1);
-       }else{JOptionPane.showMessageDialog(this, "Datos no Encontrados!!","Cancelar",JOptionPane.ERROR_MESSAGE);
+       }else{JOptionPane.showMessageDialog(this, "Datos no Encontrados!!","ERROR!",JOptionPane.ERROR_MESSAGE);
        }
     }//GEN-LAST:event_btnBusquedadVentaActionPerformed
 
@@ -519,14 +515,15 @@ public class GUIVenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelBotonesVnt;
     private javax.swing.JPanel jPanelBusquedaVnt;
     private javax.swing.JPanel jPanelDatosVnt;
-    private javax.swing.JPanel jPanelVentas;
+    public javax.swing.JPanel jPanelVentas;
     private javax.swing.JScrollPane jPaneltblVenta;
     private javax.swing.JTable tblVenta;
+    public javax.swing.JLabel txtBienvenido;
     private javax.swing.JTextField txtBusquedadVenta;
     private javax.swing.JTextField txtCodCli;
     private javax.swing.JTextField txtCodPlat;
     private javax.swing.JTextField txtcodVen;
-    private javax.swing.JTextField txtcodVendedor;
+    public javax.swing.JLabel txtcodVendedor;
     private javax.swing.JTextField txtvalor;
     // End of variables declaration//GEN-END:variables
 

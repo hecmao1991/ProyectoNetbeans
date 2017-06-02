@@ -65,11 +65,11 @@ public class ControlVendedor {
             return data;
         
     }
-    public Object [][]consultarVendedorCodigo(int codigo){
+    public Object [][]consultarVendedorCodigo(String Cedula){
     Object data [][] = new Object [contarVendedores()][4];
             ResultSet datos = null;
             String sql ="Select CODIGO_VENDEDOR,CEDULA,USUARIO,PASSWORD from vendedor "
-                    +"where CODIGO_VENDEDOR = "+codigo;
+                    +"where CEDULA = "+Cedula;
             datos = p.ejecutarConsulta(sql);
         try {
                int i=0;
@@ -128,6 +128,23 @@ public class ControlVendedor {
         }
         return data;
     }
+        public Object[][] consultarVendedorCorreo(String correo){
+        Object[][] data= new Object[contarVendedorxUsuario(correo)][5];
+        ResultSet datos = null;
+        String sql= "select p.NOMBRES,p.APELLIDOS from vendedor ve inner join persona p on (ve.CEDULA=p.CEDULA) where ve.USUARIO='"+correo+"'";
+        datos=p.ejecutarConsulta(sql);
+        try {
+            int i=0;
+            while(datos.next()){
+                      data [i][0]= datos.getString("NOMBRES");
+                      data [i][1]= datos.getString("APELLIDOS");
+                      i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlVendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
     public int contarVendedores(){
         int numero = 0;
             String sql= "Select count(CODIGO_VENDEDOR)num from vendedor";
@@ -157,6 +174,7 @@ public class ControlVendedor {
         return numero;
 
     }
+    
     public int ContarVendedorxNombre(String nombre) {
         int numero = 0;
         
@@ -236,14 +254,23 @@ public class ControlVendedor {
 
             
           //consultar por nombre          
-        String nombre= "mao";
-        data=cv.consultarVendedorNombre(nombre);
-        for (int i = 0; i < cv.ContarVendedorxNombre(nombre); i++) {
+//        String nombre= "mao";
+//        data=cv.consultarVendedorNombre(nombre);
+//        for (int i = 0; i < cv.ContarVendedorxNombre(nombre); i++) {
+//        System.out.println("NOMBRE: "+data[i][0].toString()+
+//                "  CODIGO: "+data[i][1].toString()+
+//                "  CEDULA: "+data[i][2].toString()+
+//                "  USUARIO: "+data[i][3].toString()+
+//                "  PASSWORD: "+data[i][4].toString());
+//        }
+
+        //consulta por correo
+        String nombre= "mao1";
+        data=cv.consultarVendedorCorreo(nombre);
+        for (int i = 0; i < cv.contarVendedorxUsuario(nombre); i++) {
         System.out.println("NOMBRE: "+data[i][0].toString()+
-                "  CODIGO: "+data[i][1].toString()+
-                "  CEDULA: "+data[i][2].toString()+
-                "  USUARIO: "+data[i][3].toString()+
-                "  PASSWORD: "+data[i][4].toString());
+                "  AAPELLIDO: "+data[i][1].toString());
+                
         }
         
         

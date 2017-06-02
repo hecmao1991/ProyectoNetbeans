@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package Modelo;
-import com.sun.istack.internal.logging.Logger;
 import java.sql.*;
-import java.util.logging.Level;
 
 public class Persistencia {
     
