@@ -119,6 +119,7 @@ public class ControlVenta {
                 + "where CODIGO_VENTA=" + "'" + CODIGO + "' ";
         datos = p.ejecutarConsulta(sql);
 
+        
         try {
             while (datos.next()) {
                 data[0][0] = datos.getString(1);
@@ -130,9 +131,10 @@ public class ControlVenta {
                 
 
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ControlCliente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex_consulta_venta_codigo) {
+            Logger.getLogger(ControlVenta.class.getName()).log(Level.SEVERE, null, ex_consulta_venta_codigo);
         }
+         
         return data;
     }
     
