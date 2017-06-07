@@ -3,12 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Android1234567890/Desktop/ProyectoBD/ProyectoNetbeans/recarga/src/Modelo/Persistencia.java</file>
-            <file>file:/C:/Users/Android1234567890/Desktop/ProyectoBD/ProyectoNetbeans/recarga/src/Control/ControlCliente.java</file>
-            <file>file:/C:/Users/Android1234567890/Desktop/ProyectoBD/ProyectoNetbeans/recarga/src/Modelo/ConexionBD.java</file>
-            <file>file:/C:/Users/Android1234567890/Desktop/ProyectoBD/ProyectoNetbeans/recarga/src/Vista/GUIVenta.java</file>
-            <file>file:/C:/Users/Android1234567890/Desktop/ProyectoBD/ProyectoNetbeans/recarga/src/Control/ControlVendedor.java</file>
-            <file>file:/C:/Users/Android1234567890/Desktop/ProyectoBD/ProyectoNetbeans/recarga/src/Vista/GUILogin.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Control/ControlVendedor.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Modelo/Persistencia.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Vista/GUILogin.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Control/ControlPersona.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Vista/GUIPlataforma.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Control/ControlDetalleVenta.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Vista/GUICliente.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Vista/GUIVenta.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Control/ControlPlataforma.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Modelo/ConexionBD.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Control/ControlCliente.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Vista/GUIDetalleVenta.java</file>
+            <file>file:/E:/INGENIERIA%20DE%20SISTEMAS/6.SEMESTRE/BASE%20DE%20DATOS/PROYECTO/ProyectoNetbeans/recarga/src/Control/ControlVenta.java</file>
         </group>
     </open-files>
 </project-private>

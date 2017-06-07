@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.accessibility.AccessibleState;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,11 +34,13 @@ public class GUIVenta extends javax.swing.JFrame {
     Control.ControlVendedor cven= new ControlVendedor();   
     
     DefaultTableModel dtm1;
-    DefaultTableModel dtmCliente;
+    DefaultTableModel dtmBusqueda;
+    
+    
     
     String[] tablaVenta={"Codigo_Venta","Fecha","Valor","Codigo_vendedor","Codigo_Cliente","Codigo_Plataforma"};
     String[] tablaCliente={"Cedula","Nombres","Apellidos","Direccion","Telefono","Correo"};
-    String[] tablaClienteCN={"Codigo","Nombre"};
+    String[] tablaPlataforma={"Codigo","Nombre"};
     String CODIGO_VNT="";
     Date FECHA;
     double VALOR=0;
@@ -52,16 +55,22 @@ public class GUIVenta extends javax.swing.JFrame {
     String DIRECCION=""; 
     
     public GUIVenta() {
-        Object[][] datac= cc.consultarClientes();
+         
         Object[][] data= cv.consultarVentas();
-        dtm1=new DefaultTableModel(data, tablaVenta);
-        dtmCliente=new DefaultTableModel(datac, tablaCliente);
-       
-        initComponents();        
         
+        dtm1=new DefaultTableModel(data, tablaVenta);
+        
+        Object[][] datac= cc.consultarClientes();
+        dtmBusqueda=new DefaultTableModel(datac, tablaCliente);
+        
+       
+        initComponents();    
+//        jPaneltblbusqueda.setVisible(false);
+       
+         
     }
     
-    
+            
     
     public void actualizarTablaVenta(String codigo){
         Object data[][] = cv.consultarVentaCodigo(codigo);
@@ -84,7 +93,7 @@ public class GUIVenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelVentas = new javax.swing.JPanel();
+        Busqueda = new javax.swing.JPanel();
         jPanelBotonesVnt = new javax.swing.JPanel();
         btnGuardarVenta = new javax.swing.JButton();
         btnEliminarVenta = new javax.swing.JButton();
@@ -110,11 +119,13 @@ public class GUIVenta extends javax.swing.JFrame {
         btnBusquedadVenta = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jCBoxBusquedaVenta = new javax.swing.JComboBox<>();
+        jPaneltblbusqueda = new javax.swing.JScrollPane();
+        tblBusqueda = new javax.swing.JTable();
         txtBienvenido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanelVentas.setBorder(javax.swing.BorderFactory.createTitledBorder("Venta"));
+        Busqueda.setBorder(javax.swing.BorderFactory.createTitledBorder("Venta"));
 
         jPanelBotonesVnt.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Botones"));
 
@@ -204,18 +215,18 @@ public class GUIVenta extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtvalor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                    .addComponent(txtvalor, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtCodCli, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtcodVen, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtCodPlat, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                     .addComponent(txtcodVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelDatosVntLayout.createSequentialGroup()
                     .addGap(6, 6, 6)
                     .addComponent(jLabel1)
-                    .addContainerGap(199, Short.MAX_VALUE)))
+                    .addContainerGap(172, Short.MAX_VALUE)))
         );
         jPanelDatosVntLayout.setVerticalGroup(
             jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,6 +288,20 @@ public class GUIVenta extends javax.swing.JFrame {
 
         jCBoxBusquedaVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre_Cliente", "Cedula_Cliente", "Codigo_Venta", "Mostrar_Clientes", "Mostrar_Plataforma" }));
 
+        jPaneltblbusqueda.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jPaneltblbusquedaComponentAdded(evt);
+            }
+        });
+
+        tblBusqueda.setModel(dtmBusqueda);
+        tblBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBusquedaMouseClicked(evt);
+            }
+        });
+        jPaneltblbusqueda.setViewportView(tblBusqueda);
+
         javax.swing.GroupLayout jPanelBusquedaVntLayout = new javax.swing.GroupLayout(jPanelBusquedaVnt);
         jPanelBusquedaVnt.setLayout(jPanelBusquedaVntLayout);
         jPanelBusquedaVntLayout.setHorizontalGroup(
@@ -287,11 +312,13 @@ public class GUIVenta extends javax.swing.JFrame {
                     .addGroup(jPanelBusquedaVntLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCBoxBusquedaVenta, 0, 74, Short.MAX_VALUE))
+                        .addComponent(jCBoxBusquedaVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(txtBusquedadVenta, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPaneltblbusqueda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBusquedaVntLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnBusquedadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnBusquedadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)))
                 .addContainerGap())
         );
         jPanelBusquedaVntLayout.setVerticalGroup(
@@ -304,43 +331,49 @@ public class GUIVenta extends javax.swing.JFrame {
                 .addComponent(txtBusquedadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBusquedadVenta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPaneltblbusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanelVentasLayout = new javax.swing.GroupLayout(jPanelVentas);
-        jPanelVentas.setLayout(jPanelVentasLayout);
-        jPanelVentasLayout.setHorizontalGroup(
-            jPanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelVentasLayout.createSequentialGroup()
+        javax.swing.GroupLayout BusquedaLayout = new javax.swing.GroupLayout(Busqueda);
+        Busqueda.setLayout(BusquedaLayout);
+        BusquedaLayout.setHorizontalGroup(
+            BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BusquedaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPaneltblVenta)
-                    .addGroup(jPanelVentasLayout.createSequentialGroup()
-                        .addComponent(jPanelDatosVnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelBotonesVnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelBusquedaVnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanelVentasLayout.createSequentialGroup()
+                .addGroup(BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BusquedaLayout.createSequentialGroup()
+                        .addComponent(jPaneltblVenta)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BusquedaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(txtBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)))
-                .addContainerGap())
+                        .addGap(12, 12, 12))
+                    .addGroup(BusquedaLayout.createSequentialGroup()
+                        .addComponent(jPanelDatosVnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanelBotonesVnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanelBusquedaVnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
-        jPanelVentasLayout.setVerticalGroup(
-            jPanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelVentasLayout.createSequentialGroup()
-                .addComponent(txtBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelVentasLayout.createSequentialGroup()
-                        .addGroup(jPanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanelBotonesVnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelBusquedaVnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(89, 89, 89)
-                        .addComponent(jPaneltblVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanelDatosVnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+        BusquedaLayout.setVerticalGroup(
+            BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BusquedaLayout.createSequentialGroup()
+                .addGroup(BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(BusquedaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanelDatosVnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(BusquedaLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanelBotonesVnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanelBusquedaVnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jPaneltblVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -349,22 +382,24 @@ public class GUIVenta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(Busqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVentaActionPerformed
-       CODIGO_VNT= txtcodVen.getText();
+       
+        
+        
+        CODIGO_VNT= txtcodVen.getText();
        FECHA=jDate.getDate();
        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
        VALOR=Double.parseDouble(txtvalor.getText());
@@ -397,30 +432,32 @@ public class GUIVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBusquedadVentaActionPerformed
 
     private void btnBusquedadVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusquedadVentaActionPerformed
-       String Busqueda= txtBusquedadVenta.getText();
-       Object dato[][]=cc.consultarClienteNombre(Busqueda);
+        
+        String Busqueda= txtBusquedadVenta.getText();
+//       Object dato[][]=cc.consultarClienteNombre(Busqueda);
        if ("Nombre_Cliente".equals(jCBoxBusquedaVenta.getSelectedItem().toString())) {                
                  Object data[][] = cc.consultarClienteNombre(Busqueda);
-                    dtm1= new DefaultTableModel(data,tablaCliente);
-                    tblVenta.setModel(dtm1);                                         
+                    dtmBusqueda= new DefaultTableModel(data,tablaCliente);
+                    tblBusqueda.setModel(dtmBusqueda);                                         
        }else if("Cedula_Cliente".equals(jCBoxBusquedaVenta.getSelectedItem().toString())){                
                  Object data[][] = cc.consultarClientesCedula(Busqueda);
-                    dtm1= new DefaultTableModel(data,tablaCliente);
-                    tblVenta.setModel(dtm1);                    
+                    dtmBusqueda= new DefaultTableModel(data,tablaCliente);
+                    tblBusqueda.setModel(dtmBusqueda);                    
        }else if ("Codigo_Venta".equals(jCBoxBusquedaVenta.getSelectedItem().toString())){
                 Object data[][] = cv.consultarVentaCodigo(Busqueda);
-                    dtm1= new DefaultTableModel(data,tablaVenta);
-                    tblVenta.setModel(dtm1);
+                    dtmBusqueda= new DefaultTableModel(data,tablaVenta);
+                    tblBusqueda.setModel(dtmBusqueda);
        }else if ("Mostrar_Clientes".equals(jCBoxBusquedaVenta.getSelectedItem().toString())){
                 Object data[][] = cc.consultarClientes();
-                    dtm1= new DefaultTableModel(data,tablaCliente);
-                    tblVenta.setModel(dtm1);
+                    dtmBusqueda= new DefaultTableModel(data,tablaCliente);
+                    tblBusqueda.setModel(dtmBusqueda);
        }else if ("Mostrar_Plataforma".equals(jCBoxBusquedaVenta.getSelectedItem().toString())){
                 Object data[][] = cp.consultarPlataforma();
-                    dtm1= new DefaultTableModel(data,tablaClienteCN);
-                    tblVenta.setModel(dtm1);
+                    dtmBusqueda= new DefaultTableModel(data,tablaPlataforma);
+                    tblBusqueda.setModel(dtmBusqueda);
        }else{JOptionPane.showMessageDialog(this, "Datos no Encontrados!!","ERROR!",JOptionPane.ERROR_MESSAGE);
        }
+       jPaneltblbusqueda.setVisible(true);
     }//GEN-LAST:event_btnBusquedadVentaActionPerformed
 
     private void btnModificarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarVentaActionPerformed
@@ -440,8 +477,9 @@ public class GUIVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarVentaActionPerformed
 
     private void tblVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVentaMouseClicked
-     
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
+        
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
             int  sel = this.tblVenta.getSelectedRow();
             this.txtcodVen.setText(tblVenta.getValueAt(sel,0).toString());
         try {
@@ -455,9 +493,15 @@ public class GUIVenta extends javax.swing.JFrame {
             this.txtCodCli.setText(tblVenta.getValueAt(sel,4).toString());
             this.txtCodPlat.setText(tblVenta.getValueAt(sel,5).toString());
         
-        //METODOS CLIENTE
-            
     }//GEN-LAST:event_tblVentaMouseClicked
+
+    private void tblBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBusquedaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblBusquedaMouseClicked
+
+    private void jPaneltblbusquedaComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jPaneltblbusquedaComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPaneltblbusquedaComponentAdded
 
     /**
      * @param args the command line arguments
@@ -498,6 +542,7 @@ public class GUIVenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JPanel Busqueda;
     private javax.swing.JButton btnBusquedadVenta;
     private javax.swing.JButton btnEliminarVenta;
     private javax.swing.JButton btnGuardarVenta;
@@ -515,8 +560,9 @@ public class GUIVenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelBotonesVnt;
     private javax.swing.JPanel jPanelBusquedaVnt;
     private javax.swing.JPanel jPanelDatosVnt;
-    public javax.swing.JPanel jPanelVentas;
     private javax.swing.JScrollPane jPaneltblVenta;
+    private javax.swing.JScrollPane jPaneltblbusqueda;
+    private javax.swing.JTable tblBusqueda;
     private javax.swing.JTable tblVenta;
     public javax.swing.JLabel txtBienvenido;
     private javax.swing.JTextField txtBusquedadVenta;

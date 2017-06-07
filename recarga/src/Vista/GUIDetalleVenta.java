@@ -27,7 +27,9 @@ public class GUIDetalleVenta extends javax.swing.JFrame {
     Control.ControlVenta cv=new ControlVenta();
     
     DefaultTableModel dtmDetVenta;
+    DefaultTableModel dtmBusqueda;
     String[] tablaDetVenta={"Codigo","Abono","saldo", "Codigo Venta"};
+    String[] tablaBusqueda={"Codigo","Abono","saldo", "Codigo Venta"};
     
     String CODIGO_DETALLE_VENTA="";
     int ABONO=0;
@@ -36,23 +38,23 @@ public class GUIDetalleVenta extends javax.swing.JFrame {
         
     public GUIDetalleVenta() {
         Object[][] data= cdv.consultarDetalleVenta();
-         
         dtmDetVenta=new DefaultTableModel(data, tablaDetVenta);
-       
-        initComponents();        
+        dtmBusqueda=new DefaultTableModel(data, tablaBusqueda);
+        initComponents();  
+        
         
     }
     public void actualizarTablaDetalleVenta(String codigo_detalle_venta){
         Object data[][] = cdv.consultarDetalleVentaCodigo(codigo_detalle_venta);
         dtmDetVenta= new DefaultTableModel(data,tablaDetVenta);
         
-        tbDetVenta.setModel(dtmDetVenta);        
+        tblDetVenta.setModel(dtmDetVenta);        
     }
     
     public void refrescarTblDetalleVenta(){
         Object[][] data= cdv.consultarDetalleVenta();
         dtmDetVenta=new DefaultTableModel(data, tablaDetVenta);
-        tbDetVenta.setModel(dtmDetVenta);
+        tblDetVenta.setModel(dtmDetVenta);
     }
     
     
@@ -80,7 +82,7 @@ public class GUIDetalleVenta extends javax.swing.JFrame {
         btnEliminardetvnt = new javax.swing.JButton();
         btnmostrardetvnt = new javax.swing.JButton();
         jPaneltblDetVenta = new javax.swing.JScrollPane();
-        tbDetVenta = new javax.swing.JTable();
+        tblDetVenta = new javax.swing.JTable();
         jPanelBusquedaDetVenta = new javax.swing.JPanel();
         txtBusquedaDetVenta = new javax.swing.JTextField();
         btnBusquedaDetVenta = new javax.swing.JButton();
@@ -203,13 +205,13 @@ public class GUIDetalleVenta extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
-        tbDetVenta.setModel(dtmDetVenta);
-        tbDetVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblDetVenta.setModel(dtmDetVenta);
+        tblDetVenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbDetVentaMouseClicked(evt);
+                tblDetVentaMouseClicked(evt);
             }
         });
-        jPaneltblDetVenta.setViewportView(tbDetVenta);
+        jPaneltblDetVenta.setViewportView(tblDetVenta);
 
         jPanelBusquedaDetVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Busqueda"));
 
@@ -381,14 +383,18 @@ public class GUIDetalleVenta extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnmostrardetvntActionPerformed
 
-    private void tbDetVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDetVentaMouseClicked
+    private void tblDetVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDetVentaMouseClicked
             
          
-            int  sel = this.tbDetVenta.getSelectedRow();
-            this.txtcodigodetvnt.setText(tbDetVenta.getValueAt(sel,0).toString());
-            this.txtabonodetvnt.setText(tbDetVenta.getValueAt(sel,1).toString());
-            this.txtcodvnt.setText(tbDetVenta.getValueAt(sel,2).toString());
-    }//GEN-LAST:event_tbDetVentaMouseClicked
+            int  sel = this.tblDetVenta.getSelectedRow();
+            this.txtcodigodetvnt.setText(tblDetVenta.getValueAt(sel,0).toString());
+            this.txtabonodetvnt.setText(tblDetVenta.getValueAt(sel,1).toString());
+            this.txtcodvnt.setText(tblDetVenta.getValueAt(sel,2).toString());
+            
+            
+            
+            
+    }//GEN-LAST:event_tblDetVentaMouseClicked
 
     private void txtBusquedaDetVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaDetVentaActionPerformed
         // TODO add your handling code here:
@@ -401,15 +407,15 @@ public class GUIDetalleVenta extends javax.swing.JFrame {
        if ("Nombre_Plataforma".equals(jCBoxBusquedaDetVenta.getSelectedItem().toString())) {                
                  Object data[][] = cp.consultarPlataformaNombre(Busqueda);
                     dtmDetVenta= new DefaultTableModel(data,tablaDetVenta);
-                    tbDetVenta.setModel(dtmDetVenta);                                         
+                    tblDetVenta.setModel(dtmDetVenta);                                         
        }else if("Codigo_Plataforma".equals(jCBoxBusquedaDetVenta.getSelectedItem().toString())){                
                  Object data[][] = cp.consultarPlataforma(Busqueda);
                     dtmDetVenta= new DefaultTableModel(data,tablaDetVenta);
-                    tbDetVenta.setModel(dtmDetVenta);                    
+                    tblDetVenta.setModel(dtmDetVenta);                    
        }else if ("Mostrar_Plataforma".equals(jCBoxBusquedaDetVenta.getSelectedItem().toString())){
                 Object data[][] = cp.consultarPlataforma();
                     dtmDetVenta= new DefaultTableModel(data,tablaDetVenta);
-                    tbDetVenta.setModel(dtmDetVenta);
+                    tblDetVenta.setModel(dtmDetVenta);
        }else{JOptionPane.showMessageDialog(this, "Datos no Encontrados!!","Cancelar",JOptionPane.ERROR_MESSAGE);
        }
     }//GEN-LAST:event_btnBusquedaDetVentaActionPerformed
@@ -487,7 +493,7 @@ public class GUIDetalleVenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelDetVenta;
     private javax.swing.JPanel jPanelbotonesDetVenta;
     private javax.swing.JScrollPane jPaneltblDetVenta;
-    private javax.swing.JTable tbDetVenta;
+    private javax.swing.JTable tblDetVenta;
     private javax.swing.JTextField txtBusquedaDetVenta;
     private javax.swing.JTextField txtabonodetvnt;
     private javax.swing.JTextField txtcodigodetvnt;
