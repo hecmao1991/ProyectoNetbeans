@@ -215,6 +215,11 @@ public class GUIPlataforma extends javax.swing.JFrame {
         jLabel14.setText("Buscar por:");
 
         jCBoxBusquedaPlt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre_Plataforma", "Codigo_Plataforma", "Mostrar_Plataforma" }));
+        jCBoxBusquedaPlt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxBusquedaPltActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelBusquedaclieLayout = new javax.swing.GroupLayout(jPanelBusquedaclie);
         jPanelBusquedaclie.setLayout(jPanelBusquedaclieLayout);
@@ -372,6 +377,10 @@ public class GUIPlataforma extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_btnBusquedaPltActionPerformed
 
+    private void jCBoxBusquedaPltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxBusquedaPltActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxBusquedaPltActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -435,7 +444,5 @@ public class GUIPlataforma extends javax.swing.JFrame {
     private javax.swing.JTextField txtnombreplt;
     // End of variables declaration//GEN-END:variables
 
-    private void splite(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

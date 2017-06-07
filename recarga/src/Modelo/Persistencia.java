@@ -55,6 +55,20 @@ public class Persistencia {
         }
       return codigo;
     }
+    public String GenerarCodigoVenta(){
+         String dato="";
+        cBD=new ConexionBD();
+        
+        try {
+           PreparedStatement ps=cBD.getConnection().prepareStatement("select Funcion_codigo_Venta();");
+          ResultSet codigo=ps.executeQuery();
+          codigo.next();
+          dato= codigo.getString(1);
+        } catch (SQLException e) {
+            System.out.println("Error :"+e.toString());
+        }
+      return dato;
+    }
     
     
       public static void main (String args[]){

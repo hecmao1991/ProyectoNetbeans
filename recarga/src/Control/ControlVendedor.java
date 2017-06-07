@@ -27,6 +27,11 @@ public class ControlVendedor {
         inserto=p.ejecutarDML(sql);
         return inserto;
     }
+    public String generarCodigo(){
+        String sql= "call Procedimiento_codigoVendedor(?);";
+        String dato=p.GenerarCodigo(sql);
+        return dato;
+    }
     
     public boolean eliminar(int codigo){
         boolean elimino=false;
@@ -209,6 +214,7 @@ public class ControlVendedor {
         } 
         
     }
+            
     
     public static void main (String [] args){
         ControlVendedor cv = new ControlVendedor();

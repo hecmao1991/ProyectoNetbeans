@@ -8,6 +8,7 @@ package Vista;
 import Control.ControlCliente;
 import Control.ControlPersona;
 import Control.ControlPlataforma;
+import Control.ControlValidarCorreo;
 import Control.ControlVendedor;
 import Control.ControlVenta;
 import javax.swing.JOptionPane;
@@ -24,7 +25,8 @@ public class GUICliente extends javax.swing.JFrame {
     Control.ControlCliente cc=new ControlCliente();
     Control.ControlPlataforma cp=new ControlPlataforma();
     Control.ControlPersona cpr= new ControlPersona();
-    Control.ControlVendedor cven= new ControlVendedor();   
+    Control.ControlVendedor cven= new ControlVendedor();
+    ControlValidarCorreo CVC=new ControlValidarCorreo();
     
     DefaultTableModel dtm1;
     DefaultTableModel dtmCliente;
@@ -371,11 +373,15 @@ public class GUICliente extends javax.swing.JFrame {
         TELEFONO= txttelefono.getText();
         CORREO= txtcorreo.getText();
         DIRECCION= txtdireccion.getText();
-
+        int aux;
+        aux = CVC.validaremail(CORREO);
         boolean insertop = cpr.insertarPersona(CEDULA,NOMBRES,APELLIDOS,TELEFONO,CORREO);
         boolean insertoc = cc.insertarCliente(CEDULA,DIRECCION);
-
-        if (insertop & insertoc){
+        
+        if (aux == -1) {              
+                    JOptionPane.showMessageDialog(null, "CORREO INCORRECTO");  
+            } 
+        else if (insertop==true && insertoc==true){
             JOptionPane.showMessageDialog(this, "Datos Almacenados!!","Guardar",JOptionPane.INFORMATION_MESSAGE);
             actualizarTablaCliente(CEDULA);
         }else {JOptionPane.showMessageDialog(this, "Datos no Almacenados!!","Guardar",JOptionPane.ERROR_MESSAGE);}

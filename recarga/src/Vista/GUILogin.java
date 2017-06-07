@@ -6,20 +6,10 @@
 package Vista;
 
 import Control.ControlPersona;
+import Control.ControlValidarCorreo;
 import Control.ControlVendedor;
 import Control.ControlVenta;
-import Modelo.ConexionBD;
 import Modelo.Persistencia;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,6 +21,7 @@ public class GUILogin extends javax.swing.JFrame {
     GUIVenta GV = new GUIVenta();
     ControlPersona CP = new ControlPersona();
     ControlVendedor CVEN = new ControlVendedor();
+    ControlValidarCorreo CVC=new ControlValidarCorreo();
     ControlVenta CV = new ControlVenta();
     String CEDULA, CODIGO_VENDEDOR, NOMBRES, APELLIDOS, TELEFONO, CORREO, DIRECCION, PASSWORD, PASSWORD2;
     Persistencia p = new Persistencia();
@@ -56,7 +47,7 @@ public class GUILogin extends javax.swing.JFrame {
         JlbCodigo = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
@@ -66,8 +57,8 @@ public class GUILogin extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BtnOk = new javax.swing.JButton();
+        BtnRegistrarse = new javax.swing.JButton();
         txtContraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,10 +105,10 @@ public class GUILogin extends javax.swing.JFrame {
 
         jLabel29.setText("Telefono:");
 
-        txtCorreo.setText("MAO12");
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.setText("@gmail.com");
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
 
@@ -132,7 +123,7 @@ public class GUILogin extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Ok");
+        jButton3.setText("Guardar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -151,33 +142,34 @@ public class GUILogin extends javax.swing.JFrame {
         JpanelregistrarseLayout.setHorizontalGroup(
             JpanelregistrarseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpanelregistrarseLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(JpanelregistrarseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel22)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel25)
-                    .addComponent(jLabel28)
-                    .addComponent(jLabel29)
+                .addGroup(JpanelregistrarseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(JpanelregistrarseLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel30))
-                    .addComponent(jLabel31))
-                .addGap(74, 74, 74)
-                .addGroup(JpanelregistrarseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpanelregistrarseLayout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
-                    .addGroup(JpanelregistrarseLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(JpanelregistrarseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel28)
+                            .addComponent(jLabel29)
+                            .addGroup(JpanelregistrarseLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jLabel30))
+                            .addComponent(jLabel31))
+                        .addGap(74, 74, 74)
                         .addGroup(JpanelregistrarseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtApellidoPer, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                             .addComponent(txtNombrePer)
                             .addComponent(txtIdePer)
                             .addComponent(JlbCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(JpanelregistrarseLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)))
                 .addContainerGap())
         );
         JpanelregistrarseLayout.setVerticalGroup(
@@ -205,22 +197,22 @@ public class GUILogin extends javax.swing.JFrame {
                     .addComponent(jLabel29))
                 .addGap(6, 6, 6)
                 .addGroup(JpanelregistrarseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel30))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JpanelregistrarseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel31))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(JpanelregistrarseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         JpanelIngresar.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Ingresar"));
 
-        txtUsuario.setText("mao1");
+        txtUsuario.setText("hec1_@hotmail.com");
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
@@ -231,21 +223,21 @@ public class GUILogin extends javax.swing.JFrame {
 
         jLabel26.setText("Usuario:");
 
-        jButton1.setText("Ok");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtnOk.setText("Ingresar");
+        BtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnOkActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Registrarse!");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BtnRegistrarse.setText("Registrarse!");
+        BtnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BtnRegistrarseActionPerformed(evt);
             }
         });
 
-        txtContraseña.setText("123");
+        txtContraseña.setText("12345");
         txtContraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContraseñaActionPerformed(evt);
@@ -258,17 +250,18 @@ public class GUILogin extends javax.swing.JFrame {
             JpanelIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JpanelIngresarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(JpanelIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel26))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JpanelIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUsuario)
-                    .addGroup(JpanelIngresarLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
-                    .addComponent(txtContraseña))
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel26))
+                .addGap(19, 19, 19)
+                .addGroup(JpanelIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                    .addComponent(txtContraseña)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JpanelIngresarLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BtnOk)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnRegistrarse)))
                 .addContainerGap())
         );
         JpanelIngresarLayout.setVerticalGroup(
@@ -284,8 +277,8 @@ public class GUILogin extends javax.swing.JFrame {
                     .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JpanelIngresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(BtnOk)
+                    .addComponent(BtnRegistrarse))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -350,7 +343,7 @@ public class GUILogin extends javax.swing.JFrame {
         txtUsuario.transferFocus();
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnOkActionPerformed
         try {
 
             String usu = txtUsuario.getText();
@@ -361,7 +354,7 @@ public class GUILogin extends javax.swing.JFrame {
             System.out.println("usuario= " + dato2[0][0] + "pass= " + dato2[0][1]);
             System.out.println("usuario= " + dato[0][2] + "pass= " + dato[0][3]);
 
-            if (dato[0][2] == null && dato[0][3] == null) {
+            if (dato[0][2] == null || dato[0][3] == null) {
                 JOptionPane.showMessageDialog(null, " Usuario No Registrado\n Contraseña Incorrecta o Usuario Invalido\n De Lo Contrario Dar Clic En Registrarse!");
 
             } else if (!dato[0][2].equals(usu) || !dato[0][3].equals(pass)) {
@@ -369,9 +362,10 @@ public class GUILogin extends javax.swing.JFrame {
 
             } else {
                 JOptionPane.showMessageDialog(null, "Bienvenido a Recargas: " + dato2[0][0].toString() + " " + dato2[0][1].toString() + " ☺.");
-                GV.txtBienvenido.setText("Bienvenido a Recargas: " + dato2[0][0].toString() + " " + dato2[0][1].toString() + ".");
+                GV.txtBienvenido.setText("Bienvenido a Recargas: " + dato2[0][0].toString() + " " + dato2[0][1].toString() + "☺.");
                 String Codigo = dato[0][0].toString();
                 GV.txtcodVendedor.setText(Codigo);
+                GV.txtcodVen.setText(p.GenerarCodigoVenta());
                 this.setVisible(false);
                 GV.setVisible(true);
 
@@ -379,18 +373,18 @@ public class GUILogin extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, " Revisar los Datos\n Contraseña Incorrecta o Usuario Invalido\n De Lo Contrario Dar Clic En Registrarse!");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BtnOkActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BtnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarseActionPerformed
         Jpanelregistrarse.setVisible(true);
         JpanelIngresar.setVisible(false);
-        JlbCodigo.setText(CV.generarCodigo());
+        JlbCodigo.setText(CVEN.generarCodigo());
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BtnRegistrarseActionPerformed
 
     private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
-        jButton1.setEnabled(true);
-        jButton2.setEnabled(true);
+        BtnOk.setEnabled(true);
+        BtnRegistrarse.setEnabled(true);
         txtContraseña.transferFocus();
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
@@ -398,9 +392,9 @@ public class GUILogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
@@ -408,28 +402,40 @@ public class GUILogin extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
+            int aux;
+            
             CEDULA = txtIdePer.getText();
             CODIGO_VENDEDOR = JlbCodigo.getText();
             NOMBRES = txtNombrePer.getText();
             APELLIDOS = txtApellidoPer.getText();
             TELEFONO = txtTelefono.getText();
-            CORREO = txtCorreo.getText();
+            CORREO = txtEmail.getText();
             PASSWORD = txtPassword.getText();
+
             Object dato[][] = CVEN.consultarVendedorCodigo(CEDULA);
+            Object dato2[][] = CVEN.consultarVendedorCorreo(CORREO);
+            aux = CVC.validaremail(CORREO);
+            
 
             if (CEDULA.equals("") || NOMBRES.equals("") || APELLIDOS.equals("") || TELEFONO.equals("") || CORREO.equals("") || CODIGO_VENDEDOR.equals("") || PASSWORD.equals("")) {
                 JOptionPane.showMessageDialog(null, "ALGUN DATO SE ENCUENTRA VACIO", "DATOS FALTANTES!", JOptionPane.WARNING_MESSAGE);
-            } else if (dato[0][1] == null) {
+            }else if (aux == -1) {              
+                    JOptionPane.showMessageDialog(null, "CORREO INCORRECTO");  
+            } 
+            else if (dato[0][1] == null) {
+                
                 boolean InsertoP = CP.insertarPersona(CEDULA, NOMBRES, APELLIDOS, TELEFONO, CORREO);
                 boolean InsertoV = CVEN.insertarVendedor(CODIGO_VENDEDOR, CEDULA, CORREO, PASSWORD);
-                if (InsertoP && InsertoV) {
-                    JOptionPane.showMessageDialog(null, "VENDEDOR REGISTRADO");
+                if (InsertoP==true&&InsertoV==true) {                    
+                    JOptionPane.showMessageDialog(null, "Bienvenido a Recargas: " + NOMBRES + " " + APELLIDOS+ " ☺.");
+                    GV.txtBienvenido.setText("Bienvenido a Recargas: " + NOMBRES + " " + APELLIDOS + "☺.");
+                    GV.setVisible(true);
+                    Jpanelregistrarse.setVisible(false);
+                    JpanelIngresar.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "VENDEDOR NO REGISTRADO!", "ERROR!", JOptionPane.ERROR_MESSAGE);
                 }
 
-                Jpanelregistrarse.setVisible(false);
-                JpanelIngresar.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(null, "VENDEDOR YA SE ENCUENTRA REGISTRADO", "ERROR!", JOptionPane.ERROR_MESSAGE);
 
@@ -482,12 +488,12 @@ public class GUILogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnOk;
+    private javax.swing.JButton BtnRegistrarse;
     private javax.swing.JLabel JlbCodigo;
     private javax.swing.JPanel JpanelIngresar;
     private javax.swing.JPanel Jpanellogin;
     private javax.swing.JPanel Jpanelregistrarse;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel22;
@@ -501,7 +507,7 @@ public class GUILogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JTextField txtApellidoPer;
     private javax.swing.JPasswordField txtContraseña;
-    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIdePer;
     private javax.swing.JTextField txtNombrePer;
     private javax.swing.JTextField txtPassword;

@@ -85,11 +85,17 @@ public class ControlVenta {
         return numero;
 
     }
-    public String generarCodigo(){
-        String sql= "call Procedimiento_codigoVendedor(?);";
-        String dato=p.GenerarCodigo(sql);
-        return dato;
-    }
+//    public String generarCodigo(){
+//        String dato="";
+//        String sql= "select Funcion_codigo_Venta('0');";
+//        ResultSet codigo=p.GenerarCodigoVenta(sql);
+//        try {
+//            String dato= codigo.getString('0');
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ControlVenta.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return dato;
+//    }
     
     public Object[][] consultarVentas() {
         Object data[][] = new Object[contarClientes()][6];
