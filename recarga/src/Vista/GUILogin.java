@@ -31,14 +31,15 @@ public class GUILogin extends javax.swing.JFrame {
     GUIVenta GV = new GUIVenta();
     ControlPersona CP = new ControlPersona();
     ControlVendedor CVEN = new ControlVendedor();
-    ControlVenta CV=new ControlVenta();
+    ControlVenta CV = new ControlVenta();
     String CEDULA, CODIGO_VENDEDOR, NOMBRES, APELLIDOS, TELEFONO, CORREO, DIRECCION, PASSWORD, PASSWORD2;
     Persistencia p = new Persistencia();
+
     public GUILogin() {
         initComponents();
         Jpanelregistrarse.setVisible(false);
     }
-   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -351,32 +352,29 @@ public class GUILogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            
-            String usu=txtUsuario.getText();
-            String pass=txtContraseña.getText();            
+
+            String usu = txtUsuario.getText();
+            String pass = txtContraseña.getText();
             Object dato[][] = CVEN.consultarVendedorUsuario(usu);
             Object dato2[][] = CVEN.consultarVendedorCorreo(usu);
-           
-            System.out.println("usuario= "+dato2[0][0]+"pass= "+dato2[0][1]);
-            System.out.println("usuario= "+dato[0][2]+"pass= "+dato[0][3]);
-            
-            
-            if(dato[0][2]==null&&dato[0][3]==null){
-                JOptionPane.showMessageDialog(null, " Usuario No Registrado\n Contraseña Incorrecta o Usuario Invalido\n De Lo Contrario Dar Clic En Registrarse!");
-                
 
-            }else if (!dato[0][2].equals(usu)||!dato[0][3].equals(pass)){
+            System.out.println("usuario= " + dato2[0][0] + "pass= " + dato2[0][1]);
+            System.out.println("usuario= " + dato[0][2] + "pass= " + dato[0][3]);
+
+            if (dato[0][2] == null && dato[0][3] == null) {
                 JOptionPane.showMessageDialog(null, " Usuario No Registrado\n Contraseña Incorrecta o Usuario Invalido\n De Lo Contrario Dar Clic En Registrarse!");
-                
-            }
-            else{
+
+            } else if (!dato[0][2].equals(usu) || !dato[0][3].equals(pass)) {
+                JOptionPane.showMessageDialog(null, " Usuario No Registrado\n Contraseña Incorrecta o Usuario Invalido\n De Lo Contrario Dar Clic En Registrarse!");
+
+            } else {
                 JOptionPane.showMessageDialog(null, "Bienvenido a Recargas: " + dato2[0][0].toString() + " " + dato2[0][1].toString() + " ☺.");
                 GV.txtBienvenido.setText("Bienvenido a Recargas: " + dato2[0][0].toString() + " " + dato2[0][1].toString() + ".");
-                String Codigo=dato[0][0].toString();
+                String Codigo = dato[0][0].toString();
                 GV.txtcodVendedor.setText(Codigo);
                 this.setVisible(false);
                 GV.setVisible(true);
-                
+
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, " Revisar los Datos\n Contraseña Incorrecta o Usuario Invalido\n De Lo Contrario Dar Clic En Registrarse!");
@@ -419,22 +417,22 @@ public class GUILogin extends javax.swing.JFrame {
             PASSWORD = txtPassword.getText();
             Object dato[][] = CVEN.consultarVendedorCodigo(CEDULA);
 
-            
-            if (dato[0][1]==null) {
-               
-                boolean Inserto = CP.insertarPersona(CEDULA, NOMBRES, APELLIDOS, TELEFONO, CORREO);
-                Inserto = CVEN.insertarVendedor(CODIGO_VENDEDOR, CEDULA, CORREO, PASSWORD);
-                if (Inserto) {
-                    JOptionPane.showMessageDialog(null, "Vendedor Registrado");
+            if (CEDULA.equals("") || NOMBRES.equals("") || APELLIDOS.equals("") || TELEFONO.equals("") || CORREO.equals("") || CODIGO_VENDEDOR.equals("") || PASSWORD.equals("")) {
+                JOptionPane.showMessageDialog(null, "ALGUN DATO SE ENCUENTRA VACIO", "DATOS FALTANTES!", JOptionPane.WARNING_MESSAGE);
+            } else if (dato[0][1] == null) {
+                boolean InsertoP = CP.insertarPersona(CEDULA, NOMBRES, APELLIDOS, TELEFONO, CORREO);
+                boolean InsertoV = CVEN.insertarVendedor(CODIGO_VENDEDOR, CEDULA, CORREO, PASSWORD);
+                if (InsertoP && InsertoV) {
+                    JOptionPane.showMessageDialog(null, "VENDEDOR REGISTRADO");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Vendedor no registrado!", "ERROR!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "VENDEDOR NO REGISTRADO!", "ERROR!", JOptionPane.ERROR_MESSAGE);
                 }
 
                 Jpanelregistrarse.setVisible(false);
-                JpanelIngresar.setVisible(false); 
+                JpanelIngresar.setVisible(false);
             } else {
-                JOptionPane.showMessageDialog(null, "Vendedor Registrado", "ERROR!", JOptionPane.ERROR_MESSAGE);
-                
+                JOptionPane.showMessageDialog(null, "VENDEDOR YA SE ENCUENTRA REGISTRADO", "ERROR!", JOptionPane.ERROR_MESSAGE);
+
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR!", "ERROR!", JOptionPane.ERROR_MESSAGE);
@@ -443,9 +441,9 @@ public class GUILogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       Jpanelregistrarse.setVisible(false);
-       JpanelIngresar.setVisible(true); 
-        
+        Jpanelregistrarse.setVisible(false);
+        JpanelIngresar.setVisible(true);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

@@ -225,7 +225,7 @@ public class GUIVenta extends javax.swing.JFrame {
                     .addComponent(txtCodCli, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtcodVen, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtCodPlat, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                    .addComponent(jDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                     .addComponent(txtcodVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,7 +318,7 @@ public class GUIVenta extends javax.swing.JFrame {
                     .addGroup(jPanelBusquedaVntLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCBoxBusquedaVenta, 0, 128, Short.MAX_VALUE))
+                        .addComponent(jCBoxBusquedaVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(txtBusquedadVenta, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPaneltblbusqueda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBusquedaVntLayout.createSequentialGroup()
@@ -388,8 +388,8 @@ public class GUIVenta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(Busqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,7 +403,9 @@ public class GUIVenta extends javax.swing.JFrame {
 
     private void btnGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVentaActionPerformed
        
-       CODIGO_VNT= txtcodVen.getText();
+        
+        
+        CODIGO_VNT= txtcodVen.getText();
        FECHA=jDate.getDate();
        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
        VALOR=Double.parseDouble(txtvalor.getText());
