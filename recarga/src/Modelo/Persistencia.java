@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class Persistencia {
     
-    ConexionBD cBD= null;
+    public ConexionBD cBD= null;
     
     public boolean ejecutarDML(String sql){
         boolean ejecuto= false;
@@ -39,6 +39,21 @@ public class Persistencia {
             System.out.println("Error :"+e.toString());
         }
         return datos;
+    }
+    public String GenerarCodigo(String sql){
+        String codigo="";
+        cBD=new ConexionBD();
+        
+        try {
+            CallableStatement cst = cBD.getConnection().prepareCall(sql);
+            cst.setInt("CODIGO_VENDEDOR",0);
+            cst.registerOutParameter("CODIGO_VENDEDOR",java.sql.Types.VARCHAR);
+            cst.executeQuery();
+            codigo= cst.getString("CODIGO_VENDEDOR");
+        } catch (SQLException e) {
+            System.out.println("Error :"+e.toString());
+        }
+      return codigo;
     }
     
     

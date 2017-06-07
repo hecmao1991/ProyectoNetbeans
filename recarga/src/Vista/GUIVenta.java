@@ -10,6 +10,11 @@ import Control.ControlPersona;
 import Control.ControlPlataforma;
 import Control.ControlVendedor;
 import Control.ControlVenta;
+import Modelo.Persistencia;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -31,6 +36,7 @@ public class GUIVenta extends javax.swing.JFrame {
     Control.ControlPlataforma cp=new ControlPlataforma();
     Control.ControlPersona cpr= new ControlPersona();
     Control.ControlVendedor cven= new ControlVendedor();   
+    
     
     DefaultTableModel dtm1;
     DefaultTableModel dtmCliente;
@@ -204,11 +210,11 @@ public class GUIVenta extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtvalor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                    .addComponent(txtvalor, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtCodCli, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtcodVen, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtCodPlat, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                     .addComponent(txtcodVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanelDatosVntLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,7 +293,7 @@ public class GUIVenta extends javax.swing.JFrame {
                     .addGroup(jPanelBusquedaVntLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCBoxBusquedaVenta, 0, 74, Short.MAX_VALUE))
+                        .addComponent(jCBoxBusquedaVenta, 0, 128, Short.MAX_VALUE))
                     .addComponent(txtBusquedadVenta, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBusquedaVntLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -349,8 +355,8 @@ public class GUIVenta extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelVentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,6 +370,7 @@ public class GUIVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVentaActionPerformed
+       
        CODIGO_VNT= txtcodVen.getText();
        FECHA=jDate.getDate();
        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYYY");
@@ -371,8 +378,9 @@ public class GUIVenta extends javax.swing.JFrame {
        CODIGO_VENDEDOR=txtcodVendedor.getText();
        CODIGO_CLI=txtCodCli.getText();
        CODIGO_PLA=txtCodPlat.getText();
+        
        boolean inserto = cv.insertarVenta(CODIGO_VNT,formato.format(FECHA),VALOR,CODIGO_VENDEDOR,CODIGO_CLI,CODIGO_PLA);
-       
+      
        if (inserto){
            JOptionPane.showMessageDialog(this, "Datos Almacenados!!","guardar",JOptionPane.INFORMATION_MESSAGE);
            actualizarTablaVenta(CODIGO_VNT);

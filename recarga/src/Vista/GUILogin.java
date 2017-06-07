@@ -7,7 +7,19 @@ package Vista;
 
 import Control.ControlPersona;
 import Control.ControlVendedor;
+import Control.ControlVenta;
+import Modelo.ConexionBD;
+import Modelo.Persistencia;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,8 +31,9 @@ public class GUILogin extends javax.swing.JFrame {
     GUIVenta GV = new GUIVenta();
     ControlPersona CP = new ControlPersona();
     ControlVendedor CVEN = new ControlVendedor();
+    ControlVenta CV=new ControlVenta();
     String CEDULA, CODIGO_VENDEDOR, NOMBRES, APELLIDOS, TELEFONO, CORREO, DIRECCION, PASSWORD, PASSWORD2;
-
+    Persistencia p = new Persistencia();
     public GUILogin() {
         initComponents();
         Jpanelregistrarse.setVisible(false);
@@ -344,14 +357,19 @@ public class GUILogin extends javax.swing.JFrame {
             Object dato[][] = CVEN.consultarVendedorUsuario(usu);
             Object dato2[][] = CVEN.consultarVendedorCorreo(usu);
            
-            System.out.println("usuario= "+dato2[0][0]+"pass= "+dato[0][1]);
+            System.out.println("usuario= "+dato2[0][0]+"pass= "+dato2[0][1]);
+            System.out.println("usuario= "+dato[0][2]+"pass= "+dato[0][3]);
             
             
             if(dato[0][2]==null&&dato[0][3]==null){
                 JOptionPane.showMessageDialog(null, " Usuario No Registrado\n Contraseña Incorrecta o Usuario Invalido\n De Lo Contrario Dar Clic En Registrarse!");
                 
 
-            }else{
+            }else if (!dato[0][2].equals(usu)||!dato[0][3].equals(pass)){
+                JOptionPane.showMessageDialog(null, " Usuario No Registrado\n Contraseña Incorrecta o Usuario Invalido\n De Lo Contrario Dar Clic En Registrarse!");
+                
+            }
+            else{
                 JOptionPane.showMessageDialog(null, "Bienvenido a Recargas: " + dato2[0][0].toString() + " " + dato2[0][1].toString() + " ☺.");
                 GV.txtBienvenido.setText("Bienvenido a Recargas: " + dato2[0][0].toString() + " " + dato2[0][1].toString() + ".");
                 String Codigo=dato[0][0].toString();
@@ -368,22 +386,8 @@ public class GUILogin extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Jpanelregistrarse.setVisible(true);
         JpanelIngresar.setVisible(false);
-        Random rnd = new Random();
-        String abecedario = "ABCDEFGHIJKLMOPQRSTUVWXYZ";
-        String cadena = "";
-        int m = 0, pos = 0, num;
-        while (m < 1) {
-            pos = (int) (rnd.nextDouble() * abecedario.length() - 1 + 0);
-            num = (int) (rnd.nextDouble() * 9999 + 1000);
-            cadena = cadena + abecedario.charAt(pos) + num;
-            pos = (int) (rnd.nextDouble() * abecedario.length() - 1 + 0);
-            cadena = cadena + abecedario.charAt(pos);
-            JlbCodigo.setText(cadena);
-            System.out.println("Cadenaa " + (m + 1) + " : " + cadena + "\n");
-            cadena = "";
-            m++;
-        }
-        jButton2.transferFocus();
+        JlbCodigo.setText(CV.generarCodigo());
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
@@ -439,9 +443,9 @@ public class GUILogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        txtIdePer.setText("");
-        txtNombrePer.setText("");
-        txtApellidoPer.setText("");
+       Jpanelregistrarse.setVisible(false);
+       JpanelIngresar.setVisible(true); 
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

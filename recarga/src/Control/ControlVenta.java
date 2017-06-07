@@ -85,6 +85,12 @@ public class ControlVenta {
         return numero;
 
     }
+    public String generarCodigo(){
+        String sql= "call Procedimiento_codigoVendedor(?);";
+        String dato=p.GenerarCodigo(sql);
+        return dato;
+    }
+    
     public Object[][] consultarVentas() {
         Object data[][] = new Object[contarClientes()][6];
         ResultSet datos = null;
