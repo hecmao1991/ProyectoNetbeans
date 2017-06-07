@@ -30,6 +30,8 @@ public class GUIDetalleVenta extends javax.swing.JFrame {
     String[] tablaDetVenta = {"Codigo", "Abono", "saldo", "Codigo Venta"};
     String[] tablaVenta={"Codigo_Venta","Fecha","Valor","Codigo_vendedor","Codigo_Cliente","Codigo_Plataforma"};
     
+    Object data[][] = new Object[0][4];
+    Object datac[][] = new Object[0][6];
 
     String CODIGO_DETALLE_VENTA = "";
     int ABONO = 0;
@@ -37,13 +39,11 @@ public class GUIDetalleVenta extends javax.swing.JFrame {
     String CODIGO_VENTA = "";
 
     public GUIDetalleVenta() {
-        Object[][] data = cdv.consultarDetalleVenta();
+        data = cdv.consultarDetalleVenta();
         dtmDetVenta = new DefaultTableModel(data, tablaDetVenta);
-        Object[][] datav = cv.consultarVentas();
-        dtmBusqueda = new DefaultTableModel(data, tablaVenta);
+        datac = cv.consultarVentas();
+        dtmBusqueda = new DefaultTableModel(datac, tablaVenta);
         initComponents();
-        
-
     }
 
     public void actualizarTablaDetalleVenta(String codigo_detalle_venta) {
@@ -328,8 +328,7 @@ public class GUIDetalleVenta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    Object data[][] = new Object[0][0];
-    Object datac[][] = new Object[0][0];
+    
 
     private void btnGuardardetvntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardardetvntActionPerformed
         CODIGO_DETALLE_VENTA = txtcodigodetvnt.getText();
