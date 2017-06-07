@@ -24,9 +24,7 @@ public class GUIPlataforma extends javax.swing.JFrame {
     Control.ControlPlataforma cp=new ControlPlataforma();
     
     DefaultTableModel dtmPlataforma;
-    
-    
-    
+        
     String[] tablaPlataforma={"Codigo","Nombre"};
     
     
