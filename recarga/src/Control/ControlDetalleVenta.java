@@ -21,7 +21,8 @@ public class ControlDetalleVenta {
 
 //        String sql = "select CODIGO_VENTA from venta "
 //                + "where CODIGO_VENTA=" + "'" + codigo_venta + "'";
-    public Object[][] consultarDetalleVentaCodigo(String CODIGO_DET_VENTA) {
+    public Object[][] consultarDetalleVentaCodigo(String CODIGO_DET_VENTA){
+        String respuesta;
         Object data[][] = new Object[contarDetalleVenta()][4];
         ResultSet datos = null;
         String sql = "select * from Detalle_venta "
@@ -38,8 +39,10 @@ public class ControlDetalleVenta {
                
 
             }
-        } catch (SQLException ex_consulta_venta_codigo) {
-            Logger.getLogger(ControlVenta.class.getName()).log(Level.SEVERE, null, ex_consulta_venta_codigo);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControlVenta.class.getName()).log(Level.SEVERE, null, ex);
+            
+            respuesta=ex.getMessage() ;
         }
 
         return data;
@@ -211,11 +214,11 @@ public class ControlDetalleVenta {
 
         ControlDetalleVenta cdv = new ControlDetalleVenta();
         ControlVenta cv = new ControlVenta();
-        double saldo = 0;
-        double abono = 1000;
+//        double saldo = 0;
+        double abono = 10000;
 
-        String codigo_venta = "codv1";
-        String codigo_det_venta = "cdetv76";
+        String codigo_venta = "vtn1";
+        String codigo_det_venta = "dv1";
 
         System.out.println(abono);
 

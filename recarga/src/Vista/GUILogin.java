@@ -416,7 +416,7 @@ public class GUILogin extends javax.swing.JFrame {
             CORREO = txtCorreo.getText();
             PASSWORD = txtPassword.getText();
             Object dato[][] = CVEN.consultarVendedorCodigo(CEDULA);
-
+           
             if (CEDULA.equals("") || NOMBRES.equals("") || APELLIDOS.equals("") || TELEFONO.equals("") || CORREO.equals("") || CODIGO_VENDEDOR.equals("") || PASSWORD.equals("")) {
                 JOptionPane.showMessageDialog(null, "ALGUN DATO SE ENCUENTRA VACIO", "DATOS FALTANTES!", JOptionPane.WARNING_MESSAGE);
             } else if (dato[0][1] == null) {
@@ -430,14 +430,18 @@ public class GUILogin extends javax.swing.JFrame {
 
                 Jpanelregistrarse.setVisible(false);
                 JpanelIngresar.setVisible(false);
-            } else {
+            } 
+            
+                        else {
                 JOptionPane.showMessageDialog(null, "VENDEDOR YA SE ENCUENTRA REGISTRADO", "ERROR!", JOptionPane.ERROR_MESSAGE);
-
+                System.out.println(dato[0][1]);
             }
         } catch (Exception e) {
+            
             JOptionPane.showMessageDialog(null, "ERROR!", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            
         }
-
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

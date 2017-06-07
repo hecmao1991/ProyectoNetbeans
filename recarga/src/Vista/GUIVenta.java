@@ -63,13 +63,10 @@ public class GUIVenta extends javax.swing.JFrame {
     public GUIVenta() {
          
         Object[][] data= cv.consultarVentas();
-        
         dtm1=new DefaultTableModel(data, tablaVenta);
-        
         Object[][] datac= cc.consultarClientes();
         dtmBusqueda=new DefaultTableModel(datac, tablaCliente);
-        
-       
+            
         initComponents();    
 //        jPaneltblbusqueda.setVisible(false);
        
