@@ -97,10 +97,14 @@ public class GUICliente extends javax.swing.JFrame {
         btnBusquedaCliente = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jCBoxBusquedaCliente = new javax.swing.JComboBox<>();
+        home = new javax.swing.JLabel();
+        btnsalir = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Cliente"));
+        jPanelClientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanelDatoscli.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Ingresar Datos"));
 
@@ -186,6 +190,8 @@ public class GUICliente extends javax.swing.JFrame {
                     .addContainerGap(155, Short.MAX_VALUE)))
         );
 
+        jPanelClientes.add(jPanelDatoscli, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 79, -1, -1));
+
         jPanelbotonescli.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Botones"));
 
         btnGuardarCliente.setText("Guardar");
@@ -246,6 +252,8 @@ public class GUICliente extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanelClientes.add(jPanelbotonescli, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 79, -1, -1));
+
         tblCliente.setModel(dtm1);
         tblCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -253,6 +261,8 @@ public class GUICliente extends javax.swing.JFrame {
             }
         });
         jPaneltblCliente.setViewportView(tblCliente);
+
+        jPanelClientes.add(jPaneltblCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 302, 660, 215));
 
         jPanelBusquedaclie.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Busqueda"));
 
@@ -303,39 +313,24 @@ public class GUICliente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanelClientesLayout = new javax.swing.GroupLayout(jPanelClientes);
-        jPanelClientes.setLayout(jPanelClientesLayout);
-        jPanelClientesLayout.setHorizontalGroup(
-            jPanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelClientesLayout.createSequentialGroup()
-                .addComponent(jPanelDatoscli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelbotonescli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanelBusquedaclie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(39, 39, 39))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelClientesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPaneltblCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanelClientesLayout.setVerticalGroup(
-            jPanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelClientesLayout.createSequentialGroup()
-                .addGroup(jPanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelClientesLayout.createSequentialGroup()
-                        .addGroup(jPanelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelClientesLayout.createSequentialGroup()
-                                .addComponent(jPanelbotonescli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14))
-                            .addComponent(jPanelBusquedaclie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(32, 32, 32))
-                    .addGroup(jPanelClientesLayout.createSequentialGroup()
-                        .addComponent(jPanelDatoscli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jPaneltblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 85, Short.MAX_VALUE))
-        );
+        jPanelClientes.add(jPanelBusquedaclie, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 79, -1, 223));
+
+        home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/home2.png"))); // NOI18N
+        home.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                homeMouseClicked(evt);
+            }
+        });
+        jPanelClientes.add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit1.png"))); // NOI18N
+        btnsalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnsalirMouseClicked(evt);
+            }
+        });
+        jPanelClientes.add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, -1, -1));
+        jPanelClientes.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -344,14 +339,14 @@ public class GUICliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(508, Short.MAX_VALUE))
+                .addContainerGap(535, Short.MAX_VALUE))
         );
 
         pack();
@@ -470,6 +465,15 @@ public class GUICliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBusquedaClienteActionPerformed
 
+    private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
+        this.setVisible(false);
+        new GUIGeneral().setVisible(true);
+    }//GEN-LAST:event_homeMouseClicked
+
+    private void btnsalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsalirMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_btnsalirMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -514,7 +518,10 @@ public class GUICliente extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarCliente;
     private javax.swing.JButton btnModificarCliente;
     private javax.swing.JButton btnmostrarClientes;
+    private javax.swing.JLabel btnsalir;
+    private javax.swing.JLabel home;
     private javax.swing.JComboBox<String> jCBoxBusquedaCliente;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
