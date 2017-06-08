@@ -438,12 +438,14 @@ public class GUILogin extends javax.swing.JFrame {
 
             } else {
                 JOptionPane.showMessageDialog(null, "VENDEDOR YA SE ENCUENTRA REGISTRADO", "ERROR!", JOptionPane.ERROR_MESSAGE);
-
+                System.out.println(dato[0][1]);
             }
         } catch (Exception e) {
+            
             JOptionPane.showMessageDialog(null, "ERROR!", "ERROR!", JOptionPane.ERROR_MESSAGE);
+            
         }
-
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
