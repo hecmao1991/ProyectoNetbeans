@@ -20,12 +20,18 @@ public class ControlPersona {
 
     Persistencia p = new Persistencia();
 
-    public boolean insertarPersona(String cedula,String nombres, String apellidos,String  telefono, String correo) {
+//    public boolean insertarPersona(String cedula,String nombres, String apellidos,String  telefono, String correo) {
+//        boolean inserto = false;
+//        String sql = "insert into persona(cedula, nombres, apellidos, telefono, correo)"
+//                + "values ('" + cedula + "', '" + nombres + "', '" + apellidos + "','" + telefono + "','" + correo + "')";
+//
+//        inserto = p.ejecutarDML(sql);
+//        return inserto;
+//    }
+    public boolean insertarPersona(String cedula,String nombres, String apellidos,String telefono, String correo) {
         boolean inserto = false;
-        String sql = "insert into persona(cedula, nombres, apellidos, telefono, correo)"
-                + "values ('" + cedula + "', '" + nombres + "', '" + apellidos + "','" + telefono + "','" + correo + "')";
-
-        inserto = p.ejecutarDML(sql);
+        String sql = "call Procedimiento_insertarPersona('"+cedula+"','"+nombres+"','"+apellidos+"','"+telefono+"','"+correo+"');";
+        inserto = p.Procediminto_insertarPER(sql);
         return inserto;
     }
 
@@ -149,8 +155,8 @@ public int contarPersonasxNombre(String nombre) {
     
     public static void main(String[] args) {
 
-        ControlPersona cd = new ControlPersona();
-//     boolean ejecuto = cd.insertarPersona("556","FER","GOM","311","saWQW213sa");
+        ControlPersona cp = new ControlPersona();
+     boolean ejecuto = cp.insertarPersona("55346","FER","GOM","311","ferlo@gmail.com");
 
 //       boolean ejecuto = cd.actualizarPersona("002","p2","a2","1232","actualizado");
  //       boolean ejecuto = cd.eliminarPersona("123");
@@ -160,10 +166,10 @@ public int contarPersonasxNombre(String nombre) {
 //        }
         
         //LISTAR PERSONAS
-        Object data[][] = new Object[cd.contarPersonas()][5];
-        data = cd.consultarPersona();
-        System.out.println("registros: "+ cd.contarPersonas());
-        for (int i = 0; i < cd.contarPersonas(); i++) {
+        Object data[][] = new Object[cp.contarPersonas()][5];
+        data = cp.consultarPersona();
+        System.out.println("registros: "+ cp.contarPersonas());
+        for (int i = 0; i < cp.contarPersonas(); i++) {
             System.out.println("CEDULA: " + data[i][0].toString() 
                              + " NOMBRES: " + data[i][1].toString()
                              + " APELLIDOS: " + data[i][2].toString()
@@ -174,27 +180,27 @@ public int contarPersonasxNombre(String nombre) {
         
         //CONSULTAR PERSONAS POR CEDULA
         
-        data = cd.consultarPersona("777");
-        System.out.println("CEDULA : " + data[0][0] 
-                        + "  NOMBRES: " + data[0][1]
-                        + "   APELLIDOS: " + data[0][2]
-                        + "   TELEFONO: " + data[0][3]
-                        + "   CORREO: " + data[0][4]);
+//        data = cp.consultarPersona("777");
+//        System.out.println("CEDULA : " + data[0][0] 
+//                        + "  NOMBRES: " + data[0][1]
+//                        + "   APELLIDOS: " + data[0][2]
+//                        + "   TELEFONO: " + data[0][3]
+//                        + "   CORREO: " + data[0][4]);
         
         //CONSULTAR PERSONAS POR NOMBRE
         
-        String nombre ="FER";
-        data = cd.consultarPersonaNombre(nombre);
+//        String nombre ="FER";
+//        data = cp.consultarPersonaNombre(nombre);
         
-        for (int i = 0; i < cd.contarPersonasxNombre(nombre); i++){
-        System.out.println("CEDULA : " + data[i][0] 
-                        + "  NOMBRES: " + data[i][1]
-                        + "   APELLIDOS: " + data[i][2]
-                        + "   TELEFONO: " + data[i][3]
-                        + "   CORREO: " + data[i][3]);
-        
-        
-        }
+//        for (int i = 0; i < cp.contarPersonasxNombre(nombre); i++){
+//        System.out.println("CEDULA : " + data[i][0] 
+//                        + "  NOMBRES: " + data[i][1]
+//                        + "   APELLIDOS: " + data[i][2]
+//                        + "   TELEFONO: " + data[i][3]
+//                        + "   CORREO: " + data[i][3]);
+//        
+//        
+//        }
         
         
         

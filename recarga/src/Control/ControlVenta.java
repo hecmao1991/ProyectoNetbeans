@@ -37,6 +37,11 @@ public class ControlVenta {
         actualizo = p.ejecutarDML(sql);
         return actualizo;
     }
+    public String GenerarCodigoVenta() {
+        String sql = "select Funcion_codigo_Venta();";
+        String codigo = p.GenerarCodigo(sql);
+        return codigo;
+    }
 
     public boolean eliminarVenta(String codigo) {
         boolean elimino = false;
@@ -88,7 +93,7 @@ public class ControlVenta {
 //    public String generarCodigo(){
 //        String dato="";
 //        String sql= "select Funcion_codigo_Venta('0');";
-//        ResultSet codigo=p.GenerarCodigoVenta(sql);
+//        ResultSet codigo=p.GenerarCodigo(sql);
 //        try {
 //            String dato= codigo.getString('0');
 //        } catch (SQLException ex) {
@@ -197,7 +202,7 @@ public class ControlVenta {
         Object data[][] = new Object[cv.contarClientes()][7];
         data = cv.consultarVentas();
 //       
-         System.out.println("LISTAR VENTAS");
+         System.out.println("LISTAR VENTAS");        
         for (int i = 0; i <cv.contarClientes(); i++) {
             System.out.println("CODIGO: " + data[i][0].toString() 
                              + " FECHA: " + data[i][1].toString()

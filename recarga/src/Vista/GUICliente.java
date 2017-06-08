@@ -8,65 +8,60 @@ package Vista;
 import Control.ControlCliente;
 import Control.ControlPersona;
 import Control.ControlPlataforma;
-import Control.ControlValidarCorreo;
+import Control.ControlValidaciones;
 import Control.ControlVendedor;
 import Control.ControlVenta;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-
 
 /**
  *
  * @author Mauricio
  */
 public class GUICliente extends javax.swing.JFrame {
-    Control.ControlVenta cv=new ControlVenta();
-    Control.ControlCliente cc=new ControlCliente();
-    Control.ControlPlataforma cp=new ControlPlataforma();
-    Control.ControlPersona cpr= new ControlPersona();
-    Control.ControlVendedor cven= new ControlVendedor();
-    ControlValidarCorreo CVC=new ControlValidarCorreo();
-    
+
+    Control.ControlVenta cv = new ControlVenta();
+    Control.ControlCliente cc = new ControlCliente();
+    Control.ControlPlataforma cp = new ControlPlataforma();
+    Control.ControlPersona cpr = new ControlPersona();
+    Control.ControlVendedor cven = new ControlVendedor();
+    ControlValidaciones CVC = new ControlValidaciones();
+
     DefaultTableModel dtm1;
     DefaultTableModel dtmCliente;
-    
-    
-    String[] tablaCliente={"Cedula","Nombres","Apellidos","Direccion","Telefono","Correo"};
-    String[] tablaClienteCN={"Codigo","Nombre"};
-    
-    String CODIGO_CLI="";
-    String CEDULA="";
-    String NOMBRES="";
-    String APELLIDOS="";
-    String TELEFONO="";
-    String CORREO="";
-    String DIRECCION=""; 
-    
+
+    String[] tablaCliente = {"Cedula", "Nombres", "Apellidos", "Direccion", "Telefono", "Correo"};
+    String[] tablaClienteCN = {"Codigo", "Nombre"};
+
+    String CODIGO_CLI = "";
+    String CEDULA = "";
+    String NOMBRES = "";
+    String APELLIDOS = "";
+    String TELEFONO = "";
+    String CORREO = "";
+    String DIRECCION = "";
+
     public GUICliente() {
-        Object[][] data= cc.consultarClientes();
-        
-        
-        dtm1=new DefaultTableModel(data, tablaCliente);
-       
-        initComponents();        
-        
+        Object[][] data = cc.consultarClientes();
+
+        dtm1 = new DefaultTableModel(data, tablaCliente);
+
+        initComponents();
+
     }
-    public void actualizarTablaCliente(String cedula){
+
+    public void actualizarTablaCliente(String cedula) {
         Object data[][] = cc.consultarClientesCedula(cedula);
-        dtm1= new DefaultTableModel(data,tablaCliente);
-        tblCliente.setModel(dtm1);        
-    }
-    
-    public void refrescarTblCliente(){
-        Object[][] data= cc.consultarClientes();
-        dtm1=new DefaultTableModel(data, tablaCliente);
+        dtm1 = new DefaultTableModel(data, tablaCliente);
         tblCliente.setModel(dtm1);
     }
-    
-    
-   
-    
+
+    public void refrescarTblCliente() {
+        Object[][] data = cc.consultarClientes();
+        dtm1 = new DefaultTableModel(data, tablaCliente);
+        tblCliente.setModel(dtm1);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -367,54 +362,72 @@ public class GUICliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txttelefonoActionPerformed
 
     private void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClienteActionPerformed
-        CEDULA= txtcedula.getText();
-        NOMBRES= txtnombres.getText();
-        APELLIDOS= txtapellidos.getText();
-        TELEFONO= txttelefono.getText();
-        CORREO= txtcorreo.getText();
-        DIRECCION= txtdireccion.getText();
+        CEDULA = txtcedula.getText();
+        NOMBRES = txtnombres.getText();
+        APELLIDOS = txtapellidos.getText();
+        TELEFONO = txttelefono.getText();
+        CORREO = txtcorreo.getText();
+        DIRECCION = txtdireccion.getText();
         int aux;
         aux = CVC.validaremail(CORREO);
-        boolean insertop = cpr.insertarPersona(CEDULA,NOMBRES,APELLIDOS,TELEFONO,CORREO);
-        boolean insertoc = cc.insertarCliente(CEDULA,DIRECCION);
-        
-        if (aux == -1) {              
-                    JOptionPane.showMessageDialog(null, "CORREO INCORRECTO");  
-            } 
-        else if (insertop==true && insertoc==true){
-            JOptionPane.showMessageDialog(this, "Datos Almacenados!!","Guardar",JOptionPane.INFORMATION_MESSAGE);
-            actualizarTablaCliente(CEDULA);
-        }else {JOptionPane.showMessageDialog(this, "Datos no Almacenados!!","Guardar",JOptionPane.ERROR_MESSAGE);}
+        Object dato[][] = cc.consultarClientesCedula(CEDULA);
+
+        if (CEDULA.equals("") || NOMBRES.equals("") || APELLIDOS.equals("") || TELEFONO.equals("") || CORREO.equals("") || DIRECCION.equals("")) {
+            JOptionPane.showMessageDialog(null, "ALGUN DATO SE ENCUENTRA VACIO", "DATOS FALTANTES!", JOptionPane.WARNING_MESSAGE);
+        } else if (dato[0][0] == null) {
+            if (aux == -1) {
+                JOptionPane.showMessageDialog(null, "CORREO INCORRECTO");
+            } else {
+                boolean insertop = cpr.insertarPersona(CEDULA, NOMBRES, APELLIDOS, TELEFONO, CORREO);
+                boolean insertoc = cc.insertarCliente(CEDULA, DIRECCION);
+
+                if (insertop == true && insertoc == true) {
+                    JOptionPane.showMessageDialog(this, "DATOS ALMACENADOS!!", "Guardar", JOptionPane.INFORMATION_MESSAGE);
+                    actualizarTablaCliente(CEDULA);
+                } else {
+                    JOptionPane.showMessageDialog(null, "PERSONA YA REGISTRADA!", "ERROR!", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Datos no Almacenados!!", "ERROR!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnGuardarClienteActionPerformed
 
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
-        CEDULA=txtcedula.getText();
-        int respuesta = JOptionPane.showConfirmDialog(this, "Desea Eliminar la Cedula "+CEDULA+"?");
+        CEDULA = txtcedula.getText();
+        Object dato[][] = cc.consultarClientesCedula(CEDULA);
+        if (dato[0][0].toString().equals(CEDULA)) {
+             int respuesta = JOptionPane.showConfirmDialog(this, "Desea Eliminar la Cedula " + CEDULA + "?");
         boolean eliminoc = cc.eliminarCliente(CEDULA);
         boolean eliminop = cpr.eliminarPersona(CEDULA);
-        
-        if (respuesta == JOptionPane.YES_OPTION){
+
+        if (respuesta == JOptionPane.YES_OPTION) {
             eliminoc = cc.eliminarCliente(CEDULA);
             eliminop = cpr.eliminarPersona(CEDULA);
-            
+
         }
+        }else{JOptionPane.showMessageDialog(this, "NO EXISTE CLIENTE A ELIMINAR!!", "ERROR!", JOptionPane.ERROR_MESSAGE);}
+            
+       
     }//GEN-LAST:event_btnEliminarClienteActionPerformed
 
     private void btnModificarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarClienteActionPerformed
-        CEDULA= txtcedula.getText();
-        NOMBRES= txtnombres.getText();
-        APELLIDOS= txtapellidos.getText();
-        TELEFONO= txttelefono.getText();
-        CORREO= txtcorreo.getText();
-        DIRECCION= txtdireccion.getText();
-        
-        boolean insertop = cpr.actualizarPersona(CEDULA,NOMBRES,APELLIDOS,TELEFONO,CORREO);
+        CEDULA = txtcedula.getText();
+        NOMBRES = txtnombres.getText();
+        APELLIDOS = txtapellidos.getText();
+        TELEFONO = txttelefono.getText();
+        CORREO = txtcorreo.getText();
+        DIRECCION = txtdireccion.getText();
+
+        boolean insertop = cpr.actualizarPersona(CEDULA, NOMBRES, APELLIDOS, TELEFONO, CORREO);
         boolean insertoc = cc.actualizarCiente(CEDULA, DIRECCION);
 
-        if (insertop & insertoc){
-            JOptionPane.showMessageDialog(this, "Datos Modificados!!","guardar",JOptionPane.INFORMATION_MESSAGE);
+        if (insertop & insertoc) {
+            JOptionPane.showMessageDialog(this, "Datos Modificados!!", "guardar", JOptionPane.INFORMATION_MESSAGE);
             actualizarTablaCliente(CEDULA);
-        }else {JOptionPane.showMessageDialog(this, "Datos no Almacenados!!","guardar",JOptionPane.ERROR_MESSAGE);}
+        } else {
+            JOptionPane.showMessageDialog(this, "Datos no Almacenados!!", "guardar", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnModificarClienteActionPerformed
 
     private void btnmostrarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmostrarClientesActionPerformed
@@ -422,15 +435,14 @@ public class GUICliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnmostrarClientesActionPerformed
 
     private void tblClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClienteMouseClicked
-            
-         
-            int  sel = this.tblCliente.getSelectedRow();
-            this.txtcedula.setText(tblCliente.getValueAt(sel,0).toString());
-            this.txtnombres.setText(tblCliente.getValueAt(sel,1).toString());
-            this.txtapellidos.setText(tblCliente.getValueAt(sel,2).toString());
-            this.txtdireccion.setText(tblCliente.getValueAt(sel,3).toString());
-            this.txttelefono.setText(tblCliente.getValueAt(sel,4).toString());
-            this.txtcorreo.setText(tblCliente.getValueAt(sel,5).toString());
+
+        int sel = this.tblCliente.getSelectedRow();
+        this.txtcedula.setText(tblCliente.getValueAt(sel, 0).toString());
+        this.txtnombres.setText(tblCliente.getValueAt(sel, 1).toString());
+        this.txtapellidos.setText(tblCliente.getValueAt(sel, 2).toString());
+        this.txtdireccion.setText(tblCliente.getValueAt(sel, 3).toString());
+        this.txttelefono.setText(tblCliente.getValueAt(sel, 4).toString());
+        this.txtcorreo.setText(tblCliente.getValueAt(sel, 5).toString());
     }//GEN-LAST:event_tblClienteMouseClicked
 
     private void txtBusquedaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaClienteActionPerformed
@@ -438,23 +450,24 @@ public class GUICliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBusquedaClienteActionPerformed
 
     private void btnBusquedaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusquedaClienteActionPerformed
-        String Busqueda= txtBusquedaCliente.getText();
-       Object dato[][]=cc.consultarClienteNombre(Busqueda);
-       
-       if ("Nombre_Cliente".equals(jCBoxBusquedaCliente.getSelectedItem().toString())) {                
-                 Object data[][] = cc.consultarClienteNombre(Busqueda);
-                    dtm1= new DefaultTableModel(data,tablaCliente);
-                    tblCliente.setModel(dtm1);                                         
-       }else if("Cedula_Cliente".equals(jCBoxBusquedaCliente.getSelectedItem().toString())){                
-                 Object data[][] = cc.consultarClientesCedula(Busqueda);
-                    dtm1= new DefaultTableModel(data,tablaCliente);
-                    tblCliente.setModel(dtm1);                    
-       }else if ("Mostrar_Clientes".equals(jCBoxBusquedaCliente.getSelectedItem().toString())){
-                Object data[][] = cc.consultarClientes();
-                    dtm1= new DefaultTableModel(data,tablaCliente);
-                    tblCliente.setModel(dtm1);
-       }else{JOptionPane.showMessageDialog(this, "Datos no Encontrados!!","Cancelar",JOptionPane.ERROR_MESSAGE);
-       }
+        String Busqueda = txtBusquedaCliente.getText();
+        Object dato[][] = cc.consultarClienteNombre(Busqueda);
+
+        if ("Nombre_Cliente".equals(jCBoxBusquedaCliente.getSelectedItem().toString())) {
+            Object data[][] = cc.consultarClienteNombre(Busqueda);
+            dtm1 = new DefaultTableModel(data, tablaCliente);
+            tblCliente.setModel(dtm1);
+        } else if ("Cedula_Cliente".equals(jCBoxBusquedaCliente.getSelectedItem().toString())) {
+            Object data[][] = cc.consultarClientesCedula(Busqueda);
+            dtm1 = new DefaultTableModel(data, tablaCliente);
+            tblCliente.setModel(dtm1);
+        } else if ("Mostrar_Clientes".equals(jCBoxBusquedaCliente.getSelectedItem().toString())) {
+            Object data[][] = cc.consultarClientes();
+            dtm1 = new DefaultTableModel(data, tablaCliente);
+            tblCliente.setModel(dtm1);
+        } else {
+            JOptionPane.showMessageDialog(this, "Datos no Encontrados!!", "Cancelar", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnBusquedaClienteActionPerformed
 
     /**

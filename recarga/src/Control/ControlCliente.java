@@ -18,12 +18,18 @@ public class ControlCliente {
     
     Persistencia p = new Persistencia();
     
-    public boolean insertarCliente(String cedula, String direccion) {
-        boolean inserto = false;
-        String sql = "insert into cliente(cedula,direccion)" + "values (" + cedula + ",'" + direccion + "')";
-
-        inserto = p.ejecutarDML(sql);
-        return inserto;
+//    public boolean insertarCliente(String cedula, String direccion) {
+//        boolean inserto = false;
+//        String sql = "insert into cliente(cedula,direccion)" + "values ('" + cedula + ",'" + direccion + "')";
+//
+//        inserto = p.ejecutarDML(sql);
+//        return inserto;
+//    }
+    public boolean insertarCliente(String cedulaCLI,String direccionCLI){
+        boolean inserto =false;
+        String sql = "call Procedimiento_insertarCliente('" + cedulaCLI+ ",'" + direccionCLI + "')";
+        inserto =p.Procediminto_insertarCLI(sql);
+     return inserto;
     }
 
     public boolean actualizarCiente(String cedula, String direccion) {

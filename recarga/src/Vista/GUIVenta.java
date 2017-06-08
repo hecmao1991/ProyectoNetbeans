@@ -63,13 +63,10 @@ public class GUIVenta extends javax.swing.JFrame {
     public GUIVenta() {
          
         Object[][] data= cv.consultarVentas();
-        
         dtm1=new DefaultTableModel(data, tablaVenta);
-        
         Object[][] datac= cc.consultarClientes();
         dtmBusqueda=new DefaultTableModel(datac, tablaCliente);
-        
-       
+            
         initComponents();    
 //        jPaneltblbusqueda.setVisible(false);
        
@@ -340,14 +337,12 @@ public class GUIVenta extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        txtBienvenido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout BusquedaLayout = new javax.swing.GroupLayout(Busqueda);
         Busqueda.setLayout(BusquedaLayout);
         BusquedaLayout.setHorizontalGroup(
             BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BusquedaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
             .addGroup(BusquedaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -359,6 +354,10 @@ public class GUIVenta extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanelBusquedaVnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BusquedaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         BusquedaLayout.setVerticalGroup(
             BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,7 +416,7 @@ public class GUIVenta extends javax.swing.JFrame {
 
     private void btnEliminarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVentaActionPerformed
         CODIGO_VNT=txtcodVen.getText();        
-        int respuesta = JOptionPane.showConfirmDialog(this, "Desea Eliminar la region "+CODIGO_VNT+"?");
+        int respuesta = JOptionPane.showConfirmDialog(this, "Desea Eliminar la Venta"+CODIGO_VNT+"?");
         boolean elimino= cv.eliminarVenta(CODIGO_VNT);
         if (respuesta == JOptionPane.YES_OPTION){
             elimino = cv.eliminarVenta(CODIGO_VNT);

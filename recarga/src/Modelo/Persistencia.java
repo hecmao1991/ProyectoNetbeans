@@ -40,41 +40,85 @@ public class Persistencia {
         }
         return datos;
     }
-    public String GenerarCodigo(String sql){
+    public String GenerarCodigoVendedor(String sql){
         String codigo="";
         cBD=new ConexionBD();
         
         try {
             CallableStatement cst = cBD.getConnection().prepareCall(sql);
-            cst.setInt("CODIGO_VENDEDOR",0);
-            cst.registerOutParameter("CODIGO_VENDEDOR",java.sql.Types.VARCHAR);
+           cst.setInt("CODIGO_VENDEDOR",0);
+           cst.registerOutParameter("CODIGO_VENDEDOR",java.sql.Types.VARCHAR);
             cst.executeQuery();
-            codigo= cst.getString("CODIGO_VENDEDOR");
+            codigo= cst.getString(1);
         } catch (SQLException e) {
             System.out.println("Error :"+e.toString());
         }
       return codigo;
     }
-    public String GenerarCodigoVenta(){
-         String dato="";
+//    public String GenerarCodigoVendedor(String sql){
+//        String codigo="";
+//        cBD=new ConexionBD();
+//        
+//        try {
+//            CallableStatement cst = cBD.getConnection().prepareCall(sql);
+//            cst.setInt("CODIGO_VENDEDOR",0);
+//            cst.registerOutParameter("CODIGO_VENDEDOR",java.sql.Types.VARCHAR);
+//            cst.executeQuery();
+//            codigo= cst.getString("CODIGO_VENDEDOR");
+//        } catch (SQLException e) {
+//            System.out.println("Error :"+e.toString());
+//        }
+//      return codigo;
+//    }
+    public String GenerarCodigo(String sql){
+         String generocodigo="";
         cBD=new ConexionBD();
         
         try {
-           PreparedStatement ps=cBD.getConnection().prepareStatement("select Funcion_codigo_Venta();");
-          ResultSet codigo=ps.executeQuery();
-          codigo.next();
-          dato= codigo.getString(1);
+           PreparedStatement ps=cBD.getConnection().prepareStatement(sql);
+            ResultSet codigo=ps.executeQuery();
+            codigo.next();
+            generocodigo= codigo.getString(1);
         } catch (SQLException e) {
             System.out.println("Error :"+e.toString());
         }
-      return dato;
+      return generocodigo;
+    }
+    public boolean Procediminto_insertarCLI(String sql){
+     boolean inserto =false;
+        ResultSet datos=null;
+        cBD =new ConexionBD();        
+        try{
+        CallableStatement cst = cBD.getConnection().prepareCall(sql);
+        cst.executeQuery();
+        inserto=true;
+        } catch(Exception e){
+            System.out.println("Erro "+e.toString());
+        }    
+    return inserto;
+    }
+    public boolean Procediminto_insertarPER(String sql){
+     boolean inserto =false;
+        ResultSet datos=null;
+        cBD =new ConexionBD();
+        
+        try{
+        CallableStatement cst = cBD.getConnection().prepareCall(sql);
+        cst.executeQuery();        
+        inserto=true;
+        } catch(Exception e){
+            System.out.println("Error Datos no Almacenados!!!"+e.toString());
+        }
+    
+    return inserto;
     }
     
     
       public static void main (String args[]){
             Persistencia p= new Persistencia();
             String sql=null;
-//            sql = "Insert into persona values ('123','hec','Bol','318','mao2_@hotmail.com')"; //insercion
+           
+           sql = "call Procedimiento_insertarCliente('123','hec','Bol','318','mao2_@hotmail.com')"; //insercion
 //            //sql="update regions set region_name='nuevo' where region_id='777'"; //actualizacion
 //            //sql="delete from persona where cedula='777'";//eliminacion
 //            boolean inserto= p.ejecutarDML(sql);
