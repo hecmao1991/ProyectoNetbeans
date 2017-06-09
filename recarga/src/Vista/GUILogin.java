@@ -458,11 +458,8 @@ public class GUILogin extends javax.swing.JFrame {
 
             Object dato[][] = CVEN.consultarVendedorCedula(CEDULA);
             Object dato2[][] = CVEN.consultarVendedorUsuario(CORREO);
-            
             aux = CValidaciones.validaremail(CORREO);
-            System.out.println("correo=" +CORREO);
-            
-             if (CEDULA.equals("") || NOMBRES.equals("") || APELLIDOS.equals("") || TELEFONO.equals("") || CORREO.equals("") || CODIGO_VENDEDOR.equals("") || PASSWORD.equals("")) {
+            if (CEDULA.equals("") || NOMBRES.equals("") || APELLIDOS.equals("") || TELEFONO.equals("") || CORREO.equals("") || CODIGO_VENDEDOR.equals("") || PASSWORD.equals("")) {
                 JOptionPane.showMessageDialog(null, "ALGUN DATO SE ENCUENTRA VACIO", "DATOS FALTANTES!", JOptionPane.WARNING_MESSAGE);
             }
             else if (aux == -1) {              
